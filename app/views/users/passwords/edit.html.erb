@@ -1,0 +1,95 @@
+<div class="password-change-page">
+
+  <div class="password-change-heading">
+
+    <p class="password-change-mini-title">
+      New Password 🔑
+    </p>
+
+    <h1>
+      新しいパスワードを設定
+    </h1>
+
+    <p class="password-change-subtitle">
+      新しいパスワードを入力してください
+    </p>
+
+  </div>
+
+
+  <div class="password-change-card">
+
+    <%= form_for(
+      resource,
+      as: resource_name,
+      url: password_path(resource_name),
+      html: { method: :put }
+    ) do |f| %>
+
+      <%= render "users/shared/error_messages", resource: resource %>
+
+      <%= f.hidden_field :reset_password_token %>
+
+
+      <!-- 新しいパスワード -->
+      <div class="password-change-field">
+
+        <%= f.label :password, "🔑 新しいパスワード" %>
+
+        <% if @minimum_password_length %>
+
+          <p class="password-change-note">
+            <%= @minimum_password_length %>文字以上で入力してください
+          </p>
+
+        <% end %>
+
+        <%= f.password_field :password,
+          autofocus: true,
+          autocomplete: "new-password",
+          class: "password-change-input",
+          placeholder: "新しいパスワード"
+        %>
+
+      </div>
+
+
+      <!-- パスワード確認 -->
+      <div class="password-change-field">
+
+        <%= f.label :password_confirmation, "🔐 新しいパスワード確認" %>
+
+        <%= f.password_field :password_confirmation,
+          autocomplete: "new-password",
+          class: "password-change-input",
+          placeholder: "もう一度入力してください"
+        %>
+
+      </div>
+
+
+      <!-- 更新ボタン -->
+      <div class="password-change-actions">
+
+        <%= f.submit "パスワードを変更する ✈︎",
+          class: "password-change-submit"
+        %>
+
+      </div>
+
+    <% end %>
+
+
+    <!-- ログインに戻る -->
+    <div class="password-change-back">
+
+      <%= link_to "← ログインに戻る",
+        new_session_path(resource_name),
+        class: "password-change-back-button"
+      %>
+
+    </div>
+
+  </div>
+
+</div>

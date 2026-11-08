@@ -1,0 +1,244 @@
+<div class="edit-post-page">
+
+  <!-- =========================
+       タイトル
+  ========================== -->
+
+  <div class="edit-post-heading">
+
+    <p class="edit-post-mini-title">
+      Edit Post ✎
+    </p>
+
+    <h1>
+      投稿を編集する
+    </h1>
+
+    <p class="edit-post-subtitle">
+      旅の思い出を更新しよう ❤︎
+    </p>
+
+  </div>
+
+
+  <!-- =========================
+       編集フォーム
+  ========================== -->
+
+  <div class="edit-post-card">
+
+    <%= form_for @tweet, html: { multipart: true } do |f| %>
+
+
+      <!-- 地域 -->
+      <div class="edit-post-field">
+
+        <%= f.label :region, "🗺️ 地域" %>
+
+        <%= f.select :region,
+          [
+            ["アジア", "アジア"],
+            ["ヨーロッパ", "ヨーロッパ"],
+            ["オセアニア", "オセアニア"],
+            ["北アメリカ", "北アメリカ"],
+            ["南アメリカ", "南アメリカ"],
+            ["アフリカ", "アフリカ"]
+          ],
+          { include_blank: "地域をえらんでね" },
+          class: "edit-post-input"
+        %>
+
+      </div>
+
+
+      <!-- 国名 -->
+      <div class="edit-post-field">
+
+        <%= f.label :place, "⛰️ 国名" %>
+
+        <%= f.text_field :place,
+          class: "edit-post-input",
+          placeholder: "例：タイ"
+        %>
+
+      </div>
+
+
+      <!-- 場所 -->
+      <div class="edit-post-field">
+
+        <%= f.label :location, "🚃 場所の名前" %>
+
+        <%= f.text_field :location,
+          class: "edit-post-input",
+          placeholder: "例：ワット・アルン"
+        %>
+
+      </div>
+
+
+      <!-- コスト -->
+      <div class="edit-post-field">
+
+        <%= f.label :cost, "💰 コスト" %>
+
+        <%= f.text_area :cost,
+          class: "edit-post-textarea edit-post-textarea-small",
+          placeholder: "例：入場料 200バーツ"
+        %>
+
+      </div>
+
+
+      <!-- 現在の写真 -->
+      <% if @tweet.image.attached? %>
+
+        <div class="edit-post-field">
+
+          <p class="edit-post-label">
+            📷 現在の写真
+          </p>
+
+          <div class="current-image-area">
+
+            <%= image_tag @tweet.image,
+              class: "current-edit-image"
+            %>
+
+          </div>
+
+          <label class="remove-image-area">
+
+            <%= check_box_tag :remove_image, "1" %>
+
+            <span>
+              この写真を削除する
+            </span>
+
+          </label>
+
+        </div>
+
+      <% end %>
+
+
+      <!-- 写真変更 -->
+      <div class="edit-post-field">
+
+        <%= f.label :image, "📸 写真を変更する" %>
+
+        <div class="edit-image-upload">
+
+          <p>
+            新しい写真を選ぶと写真を変更できます
+          </p>
+
+          <%= f.file_field :image,
+            class: "edit-image-input"
+          %>
+
+        </div>
+
+      </div>
+
+
+      <!-- 写真の説明 -->
+      <div class="edit-post-field">
+
+        <%= f.label :picture, "🖼️ どんな写真？" %>
+
+        <%= f.text_field :picture,
+          class: "edit-post-input",
+          placeholder: "例：夕暮れのワット・アルン"
+        %>
+
+      </div>
+
+
+      <!-- コメント -->
+      <div class="edit-post-field">
+
+        <%= f.label :comment, "💬 コメント" %>
+
+        <%= f.text_area :comment,
+          class: "edit-post-textarea",
+          placeholder: "旅の思い出を書いてみよう..."
+        %>
+
+      </div>
+
+
+      <!-- おすすめ -->
+      <div class="edit-post-field">
+
+        <%= f.label :recommendation, "💡 こんな人におすすめ" %>
+
+        <%= f.text_area :recommendation,
+          class: "edit-post-textarea",
+          placeholder: "例：歴史好きな人、写真好きな人"
+        %>
+
+      </div>
+
+
+      <!-- タグ -->
+      <div class="edit-post-field">
+
+        <p class="edit-post-label">
+          🏷️ タグ
+        </p>
+
+        <div class="edit-post-tag-list">
+
+          <%= f.collection_check_boxes(
+            :tag_ids,
+            Tag.all,
+            :id,
+            :name
+          ) do |tag| %>
+
+            <label class="edit-post-tag">
+
+              <%= tag.check_box %>
+
+              <span>
+                <%= tag.text %>
+              </span>
+
+            </label>
+
+          <% end %>
+
+        </div>
+
+      </div>
+
+
+      <!-- 更新 -->
+      <div class="edit-post-actions">
+
+        <%= f.submit "更新する ✈︎",
+          class: "edit-post-submit"
+        %>
+
+      </div>
+
+    <% end %>
+
+  </div>
+
+
+  <!-- =========================
+       詳細ページへ戻る
+  ========================== -->
+
+  <div class="edit-post-back">
+
+    <%= link_to "← 投稿詳細に戻る",
+      tweet_path(@tweet),
+      class: "edit-post-back-button"
+    %>
+
+  </div>
+
+</div>

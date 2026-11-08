@@ -1,0 +1,203 @@
+<div class="mypage">
+
+  <!-- タイトル -->
+
+  <div class="mypage-heading">
+    <p class="mypage-mini-title">My Page ✈︎</p>
+    <h1>
+      <%= @user.name %> さんのマイページ
+    </h1>
+    <p class="mypage-subtitle">
+      プロフィールと旅の思い出をチェックしよう ❤︎
+    </p>
+  </div>
+
+  <!-- プロフィール -->
+
+  <div class="profile-card">
+    <div class="profile-card-title">
+      <span>👤</span>
+      <h2>Profile</h2>
+    </div>
+    <div class="profile-item">
+      <p class="profile-label">
+        名前
+      </p>
+      <p class="profile-value">
+        <%= @user.name %>
+      </p>
+    </div>
+
+    <div class="profile-item">
+      <p class="profile-label">
+        メールアドレス
+      </p>
+      <p class="profile-value">
+        <%= @user.email %>
+      </p>
+    </div>
+
+
+    <div class="profile-item">
+      <p class="profile-label">
+        プロフィール
+      </p>
+      <p class="profile-value">
+        <% if @user.profile.present? %>
+          <%= @user.profile %>
+        <% else %>
+          <span class="profile-empty">
+            まだプロフィールがありません
+          </span>
+        <% end %>
+      </p>
+    </div>
+
+
+    <% if user_signed_in? && current_user.id == @user.id %>
+      <div class="profile-edit-area">
+        <%= link_to "プロフィールを編集する ✎",
+          edit_user_registration_path,
+          class: "profile-edit-button"
+        %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- 投稿一覧-->
+
+  <section class="mypage-posts">
+
+    <div class="mypage-posts-heading">
+      <p class="mypage-posts-mini">
+        My Travel Memories
+      </p>
+      <h2>
+        <%= @user.name %> さんの投稿
+      </h2>
+    </div>
+
+
+    <% if @tweets.present? %>
+      <div class="mypage-post-grid">
+        <% @tweets.each do |t| %>
+          <div class="mypage-post-card">
+
+            <!-- 写真 -->
+            <% if t.image.attached? %>
+              <%= image_tag t.image,
+                class: "mypage-post-image",
+                loading: "lazy"
+              %>
+            <% else %>
+
+              <div class="mypage-no-image">
+                📷
+              </div>
+
+            <% end %>
+
+
+            <!-- 投稿内容 -->
+
+            <div class="mypage-post-info">
+
+              <p class="mypage-post-region">
+                <%= t.region %>
+              </p>
+
+
+              <h3>
+                <%= t.place %>
+              </h3>
+
+
+              <% if t.location.present? %>
+
+                <p class="mypage-post-location">
+                  📍 <%= t.location %>
+                </p>
+
+              <% end %>
+
+
+              <% if t.cost.present? %>
+
+                <p>
+                  💰 <%= t.cost %>
+                </p>
+
+              <% end %>
+
+
+              <% if t.comment.present? %>
+
+                <p class="mypage-post-comment">
+                  <%= truncate(t.comment, length: 60) %>
+                </p>
+
+              <% end %>
+
+
+              <% if t.recommendation.present? %>
+
+                <p class="mypage-post-recommendation">
+                  💡 <%= truncate(t.recommendation, length: 50) %>
+                </p>
+
+              <% end %>
+
+
+              <%= link_to "くわしく見る",
+                tweet_path(t),
+                class: "mypage-post-detail"
+              %>
+
+            </div>
+
+          </div>
+
+        <% end %>
+
+      </div>
+
+
+    <% else %>
+
+      <div class="mypage-no-posts">
+
+        <p class="mypage-no-posts-icon">
+          ✈︎
+        </p>
+
+        <p>
+          まだ投稿がありません
+        </p>
+
+        <% if user_signed_in? && current_user.id == @user.id %>
+
+          <%= link_to "旅の思い出を投稿する",
+            new_tweet_path,
+            class: "mypage-new-post-button"
+          %>
+
+        <% end %>
+
+      </div>
+
+    <% end %>
+
+  </section>
+
+  <!-- トップへ戻る -->
+
+  <div class="mypage-back">
+
+    <%= link_to "← トップページに戻る",
+      tweets_path,
+      class: "mypage-back-button"
+    %>
+
+  </div>
+
+</div>

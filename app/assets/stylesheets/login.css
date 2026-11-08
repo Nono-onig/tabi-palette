@@ -1,0 +1,204 @@
+/* ログインページ */
+   
+.login-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 70px 20px 110px;
+  box-sizing: border-box;
+  background-color: #fff8e9;
+  font-family: "Zen Maru Gothic", sans-serif;
+  color: #111;
+}
+
+/* タイトル */
+
+.login-heading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.login-mini-title {
+  margin-bottom: 5px;
+
+  font-family: "Fredoka", sans-serif;
+
+  font-size: 30px;
+  font-weight: 600;
+
+  letter-spacing: 2px;
+}
+
+.login-heading h1 {
+  margin-bottom: 10px;
+
+  font-family: "M PLUS Rounded 1c", sans-serif;
+
+  font-size: 46px;
+  font-weight: 800;
+}
+
+.login-subtitle {
+  font-size: 18px;
+  line-height: 2;
+}
+
+/* ログインカード */
+
+.login-card {
+  width: 90%;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 45px 40px;
+  box-sizing: border-box;
+  background-color: white;
+  border: 3px solid #111;
+  border-radius: 35px;
+  box-shadow: 9px 9px 0 #A1F7DC;
+}
+
+/* 入力欄*/
+
+.login-field {
+  margin-bottom: 28px;
+}
+
+.login-field label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.login-input {
+  width: 100%;
+  padding: 14px 17px;
+  box-sizing: border-box;
+  background-color: #fffaf1;
+  border: 2px solid #111;
+  border-radius: 18px;
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-size: 16px;
+  outline: none; 
+  transition: 0.2s;
+}
+
+.login-input:focus {
+  background-color: white;
+  box-shadow: 4px 4px 0 #A1F7DC;
+  transform: translateY(-2px);
+}
+
+/* ログイン状態保持 */
+
+.login-remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: -5px;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.login-remember label {
+  cursor: pointer;
+}
+
+.login-checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #A1F7DC;
+}
+
+/* ログインボタン */
+
+.login-submit-area {
+  margin-top: 35px;
+  text-align: center;
+}
+
+.login-submit-button {
+  min-width: 180px;
+
+  padding: 16px 30px;
+
+  background-color: #f1846e;
+
+  border: 3px solid #111;
+  border-radius: 40px;
+
+  color: white;
+
+  font-family: "M PLUS Rounded 1c", sans-serif;
+
+  font-size: 19px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.login-submit-button:hover {
+  transform: rotate(-2deg) scale(1.06);
+
+  box-shadow: 5px 5px 0 #111;
+}
+
+/* 下のリンク */
+
+.login-links {
+  margin-top: 35px;
+
+  padding-top: 25px;
+
+  border-top: 2px dashed #ddd;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.login-link {
+  color: #111;
+
+  font-family: "Zen Maru Gothic", sans-serif;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition: 0.2s;
+}
+
+.login-link:hover {
+  color: #f1846e;
+
+  transform: translateY(-2px);
+}
+
+/* スマホ版 */
+
+@media screen and (max-width: 600px) {
+
+  .login-page {
+    padding: 45px 12px 80px;
+  }
+
+  .login-heading h1 {
+    font-size: 34px;
+  }
+
+  .login-card {
+    width: 96%;
+
+    padding: 35px 25px;
+  }
+
+}

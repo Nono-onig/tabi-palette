@@ -1,0 +1,199 @@
+<div class="new-post-page">
+
+  <!-- タイトル -->
+  <div class="new-post-heading">
+    <p class="new-post-mini-title">New Post ✈︎</p>
+    <h1>旅の思い出を投稿しよう</h1>
+    <p class="new-post-subtitle">
+      あなたのお気に入りの旅をみんなにシェアしよう ❤︎
+    </p>
+  </div>
+
+
+  <!-- 投稿フォーム -->
+  <div class="new-post-card">
+
+    <%= form_for @tweet, html: { multipart: true } do |f| %>
+
+      <!-- 地域 -->
+      <div class="post-field">
+        <%= f.label :region, "🗺️ 地域" %>
+
+        <%= f.select :region,
+          [
+            ["アジア", "アジア"],
+            ["ヨーロッパ", "ヨーロッパ"],
+            ["オセアニア", "オセアニア"],
+            ["北アメリカ", "北アメリカ"],
+            ["南アメリカ", "南アメリカ"],
+            ["アフリカ", "アフリカ"]
+          ],
+          { include_blank: "地域をえらんでね" },
+          class: "post-input"
+        %>
+      </div>
+
+
+      <!-- 国名 -->
+      <div class="post-field">
+        <%= f.label :place, "⛰️ 国名" %>
+
+        <%= f.text_field :place,
+          class: "post-input",
+          placeholder: "例：タイ"
+        %>
+      </div>
+
+
+      <!-- 場所 -->
+      <div class="post-field">
+        <%= f.label :location, "🚃 場所の名前" %>
+
+        <%= f.text_field :location,
+          class: "post-input",
+          placeholder: "例：ワット・アルン"
+        %>
+      </div>
+
+
+      <!-- コスト -->
+      <div class="post-field">
+        <%= f.label :cost, "💰 コスト" %>
+
+        <%= f.text_area :cost,
+          class: "post-textarea post-textarea-small",
+          placeholder: "例：入場料 200バーツくらい"
+        %>
+      </div>
+
+
+      <!-- 写真 -->
+      <div class="post-field">
+        <%= f.label :image, "📷 写真" %>
+
+        <div class="image-upload-box">
+          <p class="image-upload-text">
+            お気に入りの旅の写真を選んでね
+          </p>
+
+          <%= f.file_field :image,
+            class: "image-file-input"
+          %>
+        </div>
+      </div>
+
+
+      <!-- 写真の説明 -->
+      <div class="post-field">
+        <%= f.label :picture, "📸 どんな写真？" %>
+
+        <%= f.text_field :picture,
+          class: "post-input",
+          placeholder: "例：夕暮れのワット・アルン"
+        %>
+      </div>
+
+
+      <!-- コメント -->
+      <div class="post-field">
+        <%= f.label :comment, "💬 コメント" %>
+
+        <%= f.text_area :comment,
+          class: "post-textarea",
+          placeholder: "旅の思い出やおすすめポイントを書いてみよう..."
+        %>
+      </div>
+
+
+      <!-- おすすめ -->
+      <div class="post-field">
+        <%= f.label :recommendation, "💡 こんな人におすすめ" %>
+
+        <%= f.text_area :recommendation,
+          class: "post-textarea",
+          placeholder: "例：歴史が好きな人、写真を撮るのが好きな人"
+        %>
+      </div>
+
+
+      <!-- タグ -->
+      <div class="post-field">
+
+        <p class="post-section-title">
+          🏷️ タグを選ぼう
+        </p>
+
+        <div class="post-tag-list">
+
+          <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+
+            <label class="post-tag">
+
+              <%= tag.check_box %>
+
+              <span>
+                <%= tag.text %>
+              </span>
+
+            </label>
+
+          <% end %>
+
+        </div>
+
+      </div>
+
+
+      <!-- 投稿ボタン -->
+      <div class="post-submit-area">
+
+        <%= f.submit "投稿する ✈︎",
+          class: "post-submit-button"
+        %>
+
+      </div>
+
+    <% end %>
+
+  </div>
+
+
+  <!-- 新しいタグ -->
+  <div class="add-tag-card">
+
+    <h2>＋ 新しいタグを追加</h2>
+
+    <p>
+      使いたいタグがなければ、自分で追加できます
+    </p>
+
+    <%= form_tag "/tweets/add_tag",
+      method: :post,
+      class: "add-tag-form" do %>
+
+      <%= text_field_tag :new_tag,
+        nil,
+        class: "new-tag-input",
+        placeholder: "例：☕ カフェ巡り"
+      %>
+
+      <%= submit_tag "タグを追加",
+        class: "add-tag-button"
+      %>
+
+    <% end %>
+
+  </div>
+
+
+  <!-- 戻る -->
+  <div class="new-post-back">
+
+    <%= link_to "← 投稿一覧に戻る",
+      tweets_path,
+      class: "new-post-back-button"
+    %>
+
+  </div>
+
+</div>

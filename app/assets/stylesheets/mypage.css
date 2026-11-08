@@ -1,0 +1,358 @@
+/*マイページ全体*/
+
+.mypage {
+  width: 100%;
+  min-height: 100vh;
+  padding: 70px 20px 110px;
+  box-sizing: border-box;
+  background-color: #fff8e9;
+  font-family: "Zen Maru Gothic", sans-serif;
+  color: #111;
+}
+
+/* タイトル */
+
+.mypage-heading {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.mypage-mini-title {
+  margin-bottom: 5px;
+  font-family: "Fredoka", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.mypage-heading h1 {
+  margin-bottom: 10px;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 46px;
+  font-weight: 800;
+}
+
+.mypage-subtitle {
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* プロフィールカード*/
+
+.profile-card {
+  width: 90%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 50px;
+  box-sizing: border-box;
+  background-color: white;
+  border: 3px solid #111;
+  border-radius: 35px;
+  box-shadow: 9px 9px 0 #A1F7DC;
+}
+
+/* Profileタイトル */
+
+.profile-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.profile-card-title span {
+  font-size: 30px;
+}
+
+.profile-card-title h2 {
+  margin: 0;
+
+  font-family: "Fredoka", sans-serif;
+
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* プロフィールの各項目 */
+
+.profile-item {
+  padding: 18px 0;
+  border-bottom: 2px dashed #ddd;
+}
+
+.profile-label {
+  margin-bottom: 6px;
+
+  font-family: "M PLUS Rounded 1c", sans-serif;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  color: #777;
+}
+
+.profile-value {
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.profile-empty {
+  color: #999;
+  font-size: 14px;
+}
+
+/* 編集ボタン */
+
+.profile-edit-area {
+  margin-top: 30px;
+  text-align: center;
+}
+
+
+.profile-edit-button {
+  display: inline-block;
+
+  padding: 11px 22px;
+
+  border: 2px solid #111;
+
+  border-radius: 30px;
+
+  background-color: #f1846e;
+
+  color: white;
+
+  font-family: "M PLUS Rounded 1c", sans-serif;
+
+  font-weight: 800;
+
+  text-decoration: none;
+
+  transition: 0.2s;
+}
+
+.profile-edit-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 4px 4px 0 #111;
+}
+
+/* 投稿一覧エリア */
+
+.mypage-posts {
+  width: 95%;
+  max-width: 1100px;
+  margin: 90px auto 0;
+}
+
+.mypage-posts-heading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.mypage-posts-mini {
+  margin-bottom: 5px;
+
+  font-family: "Fredoka", sans-serif;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+.mypage-posts-heading h2 {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+}
+
+/* 投稿カードを3列 */
+
+.mypage-post-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px 28px;
+}
+
+/* 1つの投稿 */
+
+.mypage-post-card {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: white;
+  border: 3px solid #111;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 7px 7px 0 #A1F7DC;
+  transition: 0.25s;
+}
+
+.mypage-post-card:hover {
+  transform: translateY(-6px) rotate(-1deg);
+  box-shadow: 9px 9px 0 #f7b8ad;
+}
+
+/* 投稿画像*/
+
+.mypage-post-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 3px solid #111;
+}
+
+/* 写真なしの場合 */
+.mypage-no-image {
+  width: 100%;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff4d9;
+  border-bottom: 3px solid #111;
+  font-size: 50px;
+}
+
+/*投稿の文字 */
+
+.mypage-post-info {
+  padding: 20px;
+}
+
+.mypage-post-region {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 4px 10px;
+  background-color: #A1F7DC;
+  border: 2px solid #111;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.mypage-post-info h3 {
+  margin-bottom: 8px;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.mypage-post-info p {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.mypage-post-location {
+  font-weight: 700;
+}
+
+.mypage-post-comment {
+  font-size: 14px;
+  color: #555;
+}
+
+.mypage-post-recommendation {
+  font-size: 14px;
+}
+
+/* 詳しく見る*/
+
+.mypage-post-detail {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 15px;
+  border: 2px solid #111;
+  border-radius: 25px;
+  background-color: #f1846e;
+  color: white;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.mypage-post-detail:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0 #111;
+}
+
+/*投稿がない場合*/
+
+.mypage-no-posts {
+  padding: 60px 30px;
+  text-align: center;
+  background-color: white;
+  border: 3px solid #111;
+  border-radius: 35px;
+  box-shadow: 8px 8px 0 #A1F7DC;
+}
+
+.mypage-no-posts-icon {
+  margin-bottom: 10px;
+  font-size: 45px;
+}
+
+.mypage-new-post-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 22px;
+  border: 2px solid #111;
+  border-radius: 30px;
+  background-color: #f1846e;
+  color: white;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+/* トップへ戻る */
+
+.mypage-back {
+  margin-top: 70px;
+  text-align: center;
+}
+
+.mypage-back-button {
+  display: inline-block;
+  padding: 12px 25px;
+  border: 2px solid #111;
+  border-radius: 30px;
+  background-color: white;
+  color: #111;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 800;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.mypage-back-button:hover {
+  background-color: #A1F7DC;
+  transform: translateY(-3px);
+  box-shadow: 3px 3px 0 #111;
+}
+
+/* スマホ版　*/
+
+@media screen and (max-width: 600px) {
+  .mypage {
+    padding: 45px 12px 80px;
+  }
+
+  .mypage-heading h1 {
+    font-size: 34px;
+  }
+
+  .profile-card {
+    width: 96%;
+    padding: 30px 25px;
+  }
+
+  .mypage-post-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mypage-posts-heading h2 {
+    font-size: 28px;
+  }
+
+}

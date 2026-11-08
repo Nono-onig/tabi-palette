@@ -1,0 +1,56 @@
+<div class="all-posts-page">
+
+  <div class="all-posts-heading">
+    <p class="all-posts-mini-title">Travel Posts ✈︎</p>
+    <h1>みんなの投稿</h1>
+  </div>
+
+
+  <div class="all-posts-grid">
+
+    <% @tweets.each do |t| %>
+
+      <div class="post-card">
+
+        <% if t.image.attached? %>
+          <%= image_tag t.image,
+            class: "post-image",
+            loading: "lazy" %>
+        <% end %>
+
+
+        <div class="post-info">
+
+          <h3><%= t.place %></h3>
+
+          <% if t.location.present? %>
+            <p>📍 <%= t.location %></p>
+          <% end %>
+
+          <% if t.comment.present? %>
+            <p class="post-comment">
+              <%= truncate(t.comment, length: 45) %>
+            </p>
+          <% end %>
+
+
+          <%= link_to "くわしく見る",
+            tweet_path(t),
+            class: "post-detail-link" %>
+
+        </div>
+
+      </div>
+
+    <% end %>
+
+  </div>
+
+
+  <div class="all-posts-back">
+    <%= link_to "← トップに戻る",
+      tweets_path,
+      class: "new-post-back-button" %>
+  </div>
+
+</div>

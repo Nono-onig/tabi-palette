@@ -1,0 +1,74 @@
+<div class="password-reset-page">
+
+  <div class="password-reset-heading">
+
+    <p class="password-reset-mini-title">
+      Reset Password 🔑
+    </p>
+
+    <h1>
+      パスワードをお忘れですか？
+    </h1>
+
+    <p class="password-reset-subtitle">
+      登録しているメールアドレスを入力すると、
+      パスワード再設定用のメールを送信できます。
+    </p>
+
+  </div>
+
+
+  <div class="password-reset-card">
+
+    <%= form_for(
+      resource,
+      as: resource_name,
+      url: password_path(resource_name),
+      html: { method: :post }
+    ) do |f| %>
+
+      <%= render "users/shared/error_messages", resource: resource %>
+
+
+      <div class="password-reset-field">
+
+        <%= f.label :email, "✉️ メールアドレス" %>
+
+        <%= f.email_field :email,
+          autofocus: true,
+          autocomplete: "email",
+          class: "password-reset-input",
+          placeholder: "example@email.com"
+        %>
+
+      </div>
+
+
+      <div class="password-reset-actions">
+
+        <%= f.submit "パスワード再設定メールを送る",
+          class: "password-reset-submit"
+        %>
+
+      </div>
+
+    <% end %>
+
+
+    <div class="password-reset-links">
+
+      <%= link_to "← ログインに戻る",
+        new_session_path(resource_name),
+        class: "password-reset-link"
+      %>
+
+      <%= link_to "新規登録はこちら",
+        new_registration_path(resource_name),
+        class: "password-reset-link"
+      %>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,121 @@
+<div class="result-page">
+
+  <!-- タイトル -->
+  <section class="result-intro">
+    <p class="result-mini-title">Diagnosis Result</p>
+
+    <h1 class="result-main-title">
+      あなたの旅のPalette
+    </h1>
+
+    <p class="result-subtitle">
+      あなたにぴったりな旅行先を診断しました！♡
+    </p>
+  </section>
+
+
+  <!-- 7つのPalette -->
+  <section class="palette-section">
+    <h2 class="result-section-title">あなたのPalette</h2>
+
+    <div class="paint-palette">
+      <div class="palette-hole"></div>
+
+      <div class="paint-color culture-color">
+        <span class="paint-icon">🍓</span>
+        <span class="paint-percent"><%= @percentages["culture"] %>%</span>
+        <span class="paint-name">Culture</span>
+      </div>
+
+      <div class="paint-color nature-color">
+        <span class="paint-icon">🍏</span>
+        <span class="paint-percent"><%= @percentages["nature"] %>%</span>
+        <span class="paint-name">Nature</span>
+      </div>
+
+      <div class="paint-color adventure-color">
+        <span class="paint-icon">🍊</span>
+        <span class="paint-percent"><%= @percentages["adventure"] %>%</span>
+        <span class="paint-name">Adventure</span>
+      </div>
+
+      <div class="paint-color relax-color">
+        <span class="paint-icon">🌸</span>
+        <span class="paint-percent"><%= @percentages["relax"] %>%</span>
+        <span class="paint-name">Relax</span>
+      </div>
+
+      <div class="paint-color local-color">
+        <span class="paint-icon">💎</span>
+        <span class="paint-percent"><%= @percentages["local"] %>%</span>
+        <span class="paint-name">Local</span>
+      </div>
+
+      <div class="paint-color city-color">
+        <span class="paint-icon">🍋</span>
+        <span class="paint-percent"><%= @percentages["city"] %>%</span>
+        <span class="paint-name">City</span>
+      </div>
+
+      <div class="paint-color art-color">
+        <span class="paint-icon">🍇</span>
+        <span class="paint-percent"><%= @percentages["art"] %>%</span>
+        <span class="paint-name">Art</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 旅タイプ -->
+  <section class="travel-type-section">
+    <div class="travel-type-label">あなたの旅タイプ</div>
+
+    <div class="travel-type-card">
+      <p class="type-decoration">✦ ･ﾟ: *✧･ﾟ:* ✦</p>
+
+      <h2 class="travel-type-name">
+        <%= @travel_type[:name] %>
+      </h2>
+
+      <p class="travel-type-description">
+        <%= @travel_type[:description] %>
+      </p>
+    </div>
+  </section>
+
+
+  <!-- おすすめの国 -->
+  <section class="country-result-section">
+    <div class="country-result-label">あなたにぴったりの旅行先</div>
+
+    <div class="country-result-card">
+      <p class="country-small-text">Your Next Destination</p>
+
+      <h2 class="country-result-name">
+        <%= @country_result %>
+      </h2>
+
+      <p class="country-decoration">✈︎ ｡･:*˚:✧｡</p>
+    </div>
+  
+  </section>
+
+
+  <!-- ボタン -->
+  <div class="result-actions">
+    <%= link_to country_path(@country), class: "result-circle-button detail-button" do %>
+      <span>診断の<br>詳細を見る▶︎▶︎▶︎</span>
+    <% end %>
+
+    <%= link_to tweets_path, class: "result-circle-button top-button" do %>
+      <span>トップページに<br>戻る</span>
+    <% end %>
+  </div>
+
+</div>
+
+<!-- 絵筆のイラスト -->
+<%= image_tag "paint.png", class: "paint" %>
+
+<!-- 飛行機のイラスト -->
+<%= image_tag "test-plane.png", class: "test-plane-mark" %>

@@ -1,0 +1,95 @@
+<div class="login-page">
+
+  <div class="login-heading">
+    <p class="login-mini-title">Welcome Back ✈︎</p>
+    <h1>ログイン</h1>
+    <p class="login-subtitle">
+      tabi✈︎palette で、次の旅を見つけよう ❤︎
+    </p>
+  </div>
+
+
+  <div class="login-card">
+
+    <%= form_for(resource,
+      as: resource_name,
+      url: session_path(resource_name)) do |f| %>
+
+
+      <!-- メールアドレス -->
+      <div class="login-field">
+
+        <%= f.label :email, "✉️ メールアドレス" %>
+
+        <%= f.email_field :email,
+          autofocus: true,
+          autocomplete: "email",
+          class: "login-input",
+          placeholder: "example@email.com"
+        %>
+
+      </div>
+
+
+      <!-- パスワード -->
+      <div class="login-field">
+
+        <%= f.label :password, "🔑 パスワード" %>
+
+        <%= f.password_field :password,
+          autocomplete: "current-password",
+          class: "login-input",
+          placeholder: "パスワードを入力"
+        %>
+
+      </div>
+
+
+      <!-- ログイン状態保持 -->
+      <% if devise_mapping.rememberable? %>
+
+        <div class="login-remember">
+
+          <%= f.check_box :remember_me,
+            class: "login-checkbox"
+          %>
+
+          <%= f.label :remember_me,
+            "ログイン状態を保持する"
+          %>
+
+        </div>
+
+      <% end %>
+
+
+      <!-- ログインボタン -->
+      <div class="login-submit-area">
+
+        <%= f.submit "ログイン ✈︎",
+          class: "login-submit-button"
+        %>
+
+      </div>
+
+    <% end %>
+
+
+    <!-- 下のリンク -->
+    <div class="login-links">
+
+      <%= link_to "新規登録はこちら",
+        new_registration_path(resource_name),
+        class: "login-link"
+      %>
+
+      <%= link_to "パスワードを忘れた方はこちら",
+        new_password_path(resource_name),
+        class: "login-link"
+      %>
+
+    </div>
+
+  </div>
+
+</div>

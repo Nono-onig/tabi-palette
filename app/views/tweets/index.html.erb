@@ -1,0 +1,240 @@
+<div class="top-page">
+
+  <!-- About -->
+  <div
+  class="about"
+  style="background-image: url('<%= asset_path("about-sky.jpg") %>');"
+>
+
+  <div class="about-inner">
+
+    <h2 class="about-title">About</h2>
+
+    <p class="about-text">
+      ひとりひとりの好みや個性が違うように、ぴったりな旅も人それぞれ<br>
+      さまざまな旅の選択肢から、自分に合った「旅」を見つけよう　❤︎<br>
+      あなたにぴったりな旅先を診断し、旅の実現をサポートします
+    </p>
+
+  </div>
+
+
+  <!-- カメラを持った女の子 -->
+  <%= image_tag "camera-girl.png", class: "about-girl" %>
+
+
+  <!-- 下の文字 -->
+  <div class="about-logo-flow">
+  <div class="about-logo-track">
+
+    <div class="about-logo-group">
+      <span>tabi✈︎palette</span>
+      <span>tabi✈︎palette</span>
+      <span>tabi✈︎palette</span>
+      <span>tabi✈︎palette</span>　
+      
+    </div>
+
+    <div class="about-logo-group">
+      <span>tabi✈︎palette</span>
+      <span>tabi✈︎palette</span>
+      <span>tabi✈︎palette</span>
+      <span>tabi✈︎palette</span>　
+    
+    
+    </div>
+
+  </div>
+</div>
+</div>
+
+
+<!-- 旅行先診断 -->
+<div class="diagnosis-section">
+
+  <div class="diagnosis-background">
+
+    <%= image_tag "test-sky.jpg", class: "diagnosis-photo" %>
+    
+  </div>
+
+  <%= link_to new_test_path, class: "diagnosis-button" do %>
+    <span>旅先を診断する✈️</span>
+    <span class="test-plane-mark"></span>
+  <% end %>
+  
+  <p class="diagnosis-text">
+      質問に答えて、<br>
+      あなたにぴったりの旅を<br>
+      見つけよう
+    </p>
+
+<!-- 新規投稿する -->
+  <%= link_to new_tweet_path, class: "new-post-circle" do %>
+    <span>投稿する✈️</span>
+  <% end %>
+
+  <p class="post-text">
+      旅の思い出や、<br>
+      おすすめの場所を<br>
+      みんなにシェアしよう
+    </p>
+
+  <!-- 飛行機のイラスト -->  
+  <%= image_tag "test-plane.png", class: "test-plane" %>
+
+</div>
+
+<!-- =========================
+     投稿検索 ＋ タグ検索
+========================= -->
+
+<section
+  class="search-tag-section"
+  style="background-image: url('<%= asset_path("search-sky.jpg") %>');"
+>
+
+  <!-- 投稿検索 -->
+  <div class="search-section">
+
+    <%= form_tag({controller: "tweets", action: "index"},
+                 method: :get,
+                 class: "search-form") do %>
+
+      <%= text_field_tag :search, params[:search],
+        class: "search-input",
+        placeholder: "国名や場所をけんさく..." %>
+
+      <%= submit_tag "みんなの\n投稿をけんさく🔎",
+        class: "post-search-button" %>
+
+    <% end %>
+
+  </div>
+
+
+  <!-- タグ検索 -->
+  <div class="tag-section">
+
+    <%= form_tag({controller: "tweets", action: "index"},
+                 method: :get,
+                 class: "tag-form") do %>
+
+      <%= submit_tag "気になる\nタグから\nさがす🔎",
+        class: "tag-title-circle" %>
+
+      <div class="tag-area">
+
+        <div class="tags">
+
+          <% Tag.all.each do |t| %>
+
+            <label class="tag-button">
+
+              <%= check_box_tag "tag_ids[]",
+                t.id,
+                false,
+                class: "tag-checkbox" %>
+
+              <span class="tag-label">
+                #<%= t.name %>
+              </span>
+
+            </label>
+
+          <% end %>
+
+        </div>
+
+      </div>
+
+    <% end %>
+
+  </div>
+
+
+  <!-- 検索する女の子 -->
+  <%= image_tag "test-girl.png", class: "test-girl" %>
+
+</section>
+<!-- ★ 検索＋タグの背景はここで終了 -->
+
+
+<!-- =========================
+     みんなの投稿
+========================= -->
+
+<section
+  class="posts-section"
+  style="background-image: url('<%= asset_path("test-sky.jpg") %>');"
+>
+
+  <div class="post-cards">
+
+    <% @tweets.first(4).each do |t| %>
+
+      <div class="post-card">
+
+        <% if t.image.attached? %>
+          <%= image_tag t.image,
+            class: "post-image",
+            loading: "lazy" %>
+        <% end %>
+
+        <div class="post-info">
+
+          <h3><%= t.place %></h3>
+
+          <% if t.location.present? %>
+            <p>📍 <%= t.location %></p>
+          <% end %>
+
+          <% if t.comment.present? %>
+            <p class="post-comment">
+              <%= truncate(t.comment, length: 45) %>
+            </p>
+          <% end %>
+
+          <%= link_to "くわしく見る",
+            tweet_path(t),
+            class: "post-detail-link" %>
+
+        </div>
+
+      </div>
+
+    <% end %>
+
+  </div>
+
+  <%= link_to "みんなの投稿を見る",
+  all_posts_tweets_path,
+  class: "round-button all-posts-button" %>
+</section>
+
+
+</div>
+<!-- ↑ top-page を閉じる -->
+
+
+<footer>
+
+  <div class="footer-marquee">
+
+    <div class="footer-track">
+
+      <span>
+        tabi✈︎palette　tabi✈︎palette　tabi✈︎palette　
+        tabi✈︎palette　tabi✈︎palette　tabi✈︎palette　
+      </span>
+
+      <span>
+        tabi✈︎palette　tabi✈︎palette　tabi✈︎palette　
+        tabi✈︎palette　tabi✈︎palette　tabi✈︎palette　
+      </span>
+
+    </div>
+
+  </div>
+
+</footer>

@@ -1,0 +1,354 @@
+/*　新規投稿ページ*/
+
+.new-post-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 60px 20px 100px;
+  box-sizing: border-box;
+
+  background-color: #fff8e9;
+
+  font-family: "Zen Maru Gothic", sans-serif;
+  color: #111;
+}
+
+/* タイトル */
+
+.new-post-heading {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.new-post-mini-title {
+  font-family: "Fredoka", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+}
+
+.new-post-heading h1 {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 44px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.new-post-subtitle {
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* 投稿フォーム */
+
+.new-post-card {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+
+  padding: 50px 60px;
+  box-sizing: border-box;
+
+  background-color: #fff;
+
+  border: 3px solid #111;
+  border-radius: 35px;
+
+  box-shadow: 9px 9px 0 #A1F7DC;
+}
+
+/* 各項目 */
+
+.post-field {
+  margin-bottom: 32px;
+}
+
+.post-field > label,
+.post-section-title {
+  display: block;
+
+  margin-bottom: 10px;
+
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+/* 入力欄*/
+
+.post-input,
+.post-textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 14px 18px;
+
+  background-color: #fffaf1;
+
+  border: 2px solid #111;
+  border-radius: 17px;
+
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-size: 16px;
+
+  outline: none;
+
+  transition: 0.2s;
+}
+
+.post-input:focus,
+.post-textarea:focus {
+  background-color: #fff;
+
+  box-shadow: 4px 4px 0 #A1F7DC;
+
+  transform: translateY(-2px);
+}
+
+select.post-input {
+  cursor: pointer;
+}
+
+.post-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.post-textarea-small {
+  min-height: 80px;
+}
+
+/* 写真 */
+
+.image-upload-box {
+  padding: 30px 25px;
+
+  background-color: #fffaf1;
+
+  border: 2px dashed #111;
+  border-radius: 20px;
+
+  text-align: center;
+}
+
+.image-upload-text {
+  margin-bottom: 15px;
+
+  font-size: 15px;
+}
+
+.image-file-input {
+  font-family: "Zen Maru Gothic", sans-serif;
+}
+
+/* タグ*/
+
+.post-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.post-tag {
+  position: relative;
+  cursor: pointer;
+}
+
+.post-tag input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.post-tag span {
+  display: inline-block;
+
+  padding: 9px 16px;
+
+  background-color: #fff;
+
+  border: 2px solid #111;
+  border-radius: 30px;
+
+  font-size: 15px;
+
+  transition: 0.2s;
+}
+
+.post-tag span:hover {
+  background-color: #fff0ed;
+  transform: translateY(-2px);
+}
+
+.post-tag input:checked + span {
+  background-color: #A1F7DC;
+
+  box-shadow: 3px 3px 0 #111;
+
+  transform: translateY(-2px);
+}
+
+/* 投稿ボタン*/
+
+.post-submit-area {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.post-submit-button {
+  min-width: 180px;
+
+  padding: 17px 30px;
+
+  border: 3px solid #111;
+  border-radius: 40px;
+
+  background-color: #f1846e;
+  color: #fff;
+
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.post-submit-button:hover {
+  transform: rotate(-2deg) scale(1.06);
+
+  box-shadow: 5px 5px 0 #111;
+}
+
+/* 新しいタグ追加 */
+
+.add-tag-card {
+  width: 90%;
+  max-width: 800px;
+
+  margin: 55px auto 0;
+
+  padding: 30px 40px;
+
+  box-sizing: border-box;
+
+  background-color: #fff4d9;
+
+  border: 3px solid #111;
+  border-radius: 30px;
+}
+
+.add-tag-card h2 {
+  margin-bottom: 8px;
+
+  font-family: "M PLUS Rounded 1c", sans-serif;
+
+  font-size: 23px;
+}
+
+.add-tag-card p {
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.add-tag-form {
+  display: flex;
+  gap: 12px;
+}
+
+.new-tag-input {
+  flex: 1;
+
+  padding: 12px 16px;
+
+  border: 2px solid #111;
+  border-radius: 20px;
+
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-size: 15px;
+
+  outline: none;
+}
+
+.add-tag-button {
+  padding: 10px 20px;
+
+  border: 2px solid #111;
+  border-radius: 25px;
+
+  background-color: #A1F7DC;
+
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.add-tag-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 3px 3px 0 #111;
+}
+
+/* 戻る　*/
+
+.new-post-back {
+  margin-top: 45px;
+  text-align: center;
+}
+
+.new-post-back-button {
+  display: inline-block;
+
+  padding: 12px 25px;
+
+  border: 2px solid #111;
+  border-radius: 30px;
+
+  background-color: #fff;
+  color: #111;
+
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 800;
+
+  text-decoration: none;
+
+  transition: 0.2s;
+}
+
+.new-post-back-button:hover {
+  background-color: #A1F7DC;
+  transform: translateY(-2px);
+}
+
+/* スマホ*/
+
+@media screen and (max-width: 700px) {
+
+  .new-post-page {
+    padding: 40px 12px 70px;
+  }
+
+  .new-post-heading h1 {
+    font-size: 32px;
+  }
+
+  .new-post-card {
+    width: 96%;
+    padding: 35px 22px;
+  }
+
+  .add-tag-card {
+    width: 96%;
+    padding: 25px 20px;
+  }
+
+  .add-tag-form {
+    flex-direction: column;
+  }
+
+}

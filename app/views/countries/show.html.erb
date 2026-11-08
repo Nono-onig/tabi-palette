@@ -1,0 +1,219 @@
+<div class="country-page">
+
+  <%
+    country_images = {
+      "ニュージーランド" => "newzealand.jpg",
+      "ベトナム" => "vietnam.jpg",
+      "カンボジア" => "cambodia.jpg",
+      "マレーシア" => "malaysia.jpg",
+      "韓国" => "korea.jpg",
+      "中国" => "china.jpg",
+      "イギリス" => "uk.jpg",
+      "ノルウェー" => "norway.jpg",
+      "イタリア" => "italy.jpg",
+      "タイ" => "thailand.jpg",
+      "インドネシア" => "indonesia.jpg"
+    }
+
+    country_image = country_images[@country.country]
+
+    # 英語が登録されていれば英語を表示する
+    # 未登録の場合は日本語を表示する
+    field = ->(jp, en) {
+      @english && en.present? ? en : jp
+    }
+
+    country_name = field.call(
+      @country.country,
+      @country.country_en
+    )
+  %>
+
+  <%# 言語切り替え %>
+  <div class="country-language-switch">
+    <% if @english %>
+      <%= link_to "日本語版はこちら",
+          country_path(@country),
+          class: "country-language-link" %>
+    <% else %>
+      <%= link_to "English version here →",
+          country_path(@country, locale: "en"),
+          class: "country-language-link" %>
+    <% end %>
+  </div>
+
+  <%# 国名・メイン写真 %>
+  <section
+    class="country-header"
+    style="background-image: url('<%= asset_path(country_image) %>');"
+  >
+    <div class="country-title-card">
+      <p class="country-mini-title">
+        — TRAVEL GUIDE —
+      </p>
+
+      <h1 class="country-title">
+        <%= country_name %>
+      </h1>
+
+      <div class="country-title-line"></div>
+
+      <p class="country-header-text">
+        <%= @english ?
+            "Everything to know before your trip" :
+            "旅に出る前に知っておきたいこと" %>
+      </p>
+    </div>
+
+    <div class="country-photo-doodle">
+      Good<br>
+      Trip! ✈︎
+    </div>
+  </section>
+
+  <%# この国について %>
+  <section class="country-about">
+    <h2 class="country-section-title">
+      <%= @english ? "🌏 About this country" : "🌏 この国について" %>
+    </h2>
+
+    <p class="country-description">
+      <%= field.call(@country.description, @country.description_en) %>
+    </p>
+  </section>
+
+  <%# 費用・ビザ・準備・便利なもの %>
+  <div class="country-card-grid">
+
+    <section class="country-card country-card-price">
+      <div class="country-card-icon">💰</div>
+
+      <h2><%= @english ? "Costs" : "費用" %></h2>
+
+      <p>
+        <%= field.call(@country.price, @country.price_en) %>
+      </p>
+    </section>
+
+    <section class="country-card country-card-visa">
+      <div class="country-card-icon">🛂</div>
+
+      <h2>
+        <%= @english ? "Visa & Entry Requirements" : "ビザ・入国について" %>
+      </h2>
+
+      <div class="country-card-text">
+        <%= simple_format(
+          field.call(@country.visa_timing, @country.visa_timing_en)
+        ) %>
+      </div>
+    </section>
+
+    <section class="country-card country-card-preparation">
+      <div class="country-card-icon">🧳</div>
+
+      <h2>
+        <%= @english ? "Before You Travel" : "渡航前の準備" %>
+      </h2>
+
+      <div class="country-card-text">
+        <%= simple_format(
+          field.call(@country.preparation, @country.preparation_en)
+        ) %>
+      </div>
+    </section>
+
+    <section class="country-card country-card-items">
+      <div class="country-card-icon">🎒</div>
+
+      <h2>
+        <%= @english ? "Useful Items" : "あると便利なもの" %>
+      </h2>
+
+      <p>
+        <%= field.call(@country.useful_items, @country.useful_items_en) %>
+      </p>
+    </section>
+
+  </div>
+
+  <%# 現地の交通・注意点 %>
+  <div class="country-wide-grid">
+
+    <section class="country-wide-card country-transport">
+      <div class="country-wide-title">
+        <span class="country-wide-icon">🚃</span>
+
+        <h2>
+          <%= @english ? "Transportation" : "現地の交通" %>
+        </h2>
+      </div>
+
+      <div class="country-wide-text">
+        <%= simple_format(
+          field.call(@country.transportation, @country.transportation_en)
+        ) %>
+      </div>
+    </section>
+
+    <section class="country-wide-card country-cautions">
+      <div class="country-wide-title">
+        <span class="country-wide-icon">⚠️</span>
+
+        <h2>
+          <%= @english ? "Important Tips & Warnings" : "注意点" %>
+        </h2>
+      </div>
+
+      <div class="country-wide-text">
+        <%= simple_format(
+          field.call(@country.cautions, @country.cautions_en)
+        ) %>
+      </div>
+    </section>
+
+  </div>
+
+  <%# 参考リンク %>
+  <% if @country.link.present? %>
+    <section class="country-link-area">
+
+      <p class="country-link-mini">
+        OFFICIAL INFORMATION
+      </p>
+
+      <h2>
+        <%= @english ? "Official Links" : "参考リンク" %>
+      </h2>
+
+      <p>
+        <% if @english %>
+          For official information about visas and entry requirements,
+        <% else %>
+          ビザ・入国については、
+        <% end %>
+
+        <%= link_to(
+          @english ? "the official government website" : "各国の公式サイト",
+          @country.link,
+          target: "_blank",
+          rel: "noopener",
+          class: "country-official-link"
+        ) %>
+
+        <%= @english ? "please visit the website." : "で確認できます。" %>
+      </p>
+
+    </section>
+  <% end %>
+
+  <%# 戻るボタン %>
+  <div class="country-back-area">
+    <%= link_to(
+      @english ? "← Back to Results" : "← 診断結果に戻る",
+      :back,
+      class: "country-back-button"
+    ) %>
+  </div>
+
+</div>

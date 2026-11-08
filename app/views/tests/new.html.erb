@@ -1,0 +1,322 @@
+<div class="test-page">
+
+  <div class="test-header">
+
+    <div class="test-header-text">
+      <h1>あなたの旅のPaletteを作ろう</h1>
+      <p>７つの質問に答えて、あなたにぴったりな旅行先を見つけよう</p>
+
+      <div class="side-logo-flow">
+      <span>tabi✈︎palette</span>
+      <span>tabi✈︎palette</span>
+      <span>tabi✈︎palette</span>
+      <span>tabi✈︎palette</span>
+      <span>tabi✈︎palette</span>
+      <span>tabi✈︎palette</span>
+      <span>tabi✈︎palette</span>
+      <span>tabi✈︎palette</span>
+      
+      </div>
+
+    </div>
+
+
+<%= form_for @test do |f| %>
+
+<!-- Q1 -->
+<div class="question-card">
+  <h3 class="question-title">
+    Q1. 旅行で一番心が動く瞬間は？
+  </h3>
+
+  <div class="choices">
+    <div class="choice">
+     <%= f.radio_button :question1, "culture", id: "question1_culture" %>
+     <%= f.label :question1_culture, "何百年も前の建物や遺跡を目の前にしたとき" %>
+    </div>
+
+    <div class="choice">
+     <%= f.radio_button :question1, "nature", id: "question1_nature" %>
+     <%= f.label :question1_nature, "見たことのない大自然や絶景に出会ったとき" %>
+    </div>
+
+    <div class="choice">
+     <%= f.radio_button :question1, "adventure", id: "question1_adventure" %>
+     <%= f.label :question1_adventure, "初めての場所で、ちょっとドキドキする体験をするとき" %>
+    </div>
+
+    <div class="choice">
+     <%= f.radio_button :question1, "relax",id: "question1_relax" %>
+     <%= f.label :question1_relax, "何も考えずぼーっときれいな景色を眺めているとき" %>
+    </div>
+
+    <div class="choice">
+     <%= f.radio_button :question1, "local", id: "question1_local" %>
+     <%= f.label :question1_local, "現地の人しか知らない料理や日常に触れたとき" %>
+    </div>
+
+    <div class="choice">
+     <%= f.radio_button :question1, "city", id: "question1_city" %>
+     <%= f.label :question1_city, "おしゃれな街や話題のスポットを歩いているとき" %>
+    </div>
+
+    <div class="choice">
+     <%= f.radio_button :question1, "art", id: "question1_art" %>
+     <%= f.label :question1_art, "心に残る街並みやアート作品に出会ったとき" %>
+    </div>
+
+  </div>
+</div>  
+
+<!-- Q2 -->
+<div class="question-card">
+  <h3 class="question-title">
+   Q2. 朝から夜まで自由に使える1日。どう過ごす？
+  </h3>
+
+  <div class="choices">
+
+    <div class="choice">
+     <%= f.radio_button :question2, "culture", id: "question2_culture" %>
+     <%= f.label :question2_culture, "街を散策してSNSでは取り上げられていない魅力を見つける" %>
+    </div>
+    <!-- 🍎-->
+
+    <div class="choice">
+     <%= f.radio_button :question2, "nature,adventure", id: "question2_nature_adventure" %>
+     <%= f.label :question2_nature_adventure, "自然の中でスリル満点なアクティビティをする" %>
+    </div>
+    <!--🫛・🍊 -->
+
+    <div class="choice">
+     <%= f.radio_button :question2, "city,local",id: "question2_city_local" %>
+     <%= f.label :question2_city_local, "気になったカフェやお店をできるだけたくさん巡る" %>
+    </div>
+    <!-- 🍋・💎 -->
+
+    <div class="choice">
+     <%= f.radio_button :question2, "relax", id: "question2_relax" %>
+     <%= f.label :question2_relax, "ホテルやビーチでのんびりする" %>
+    </div>
+    <!-- 🌸 -->
+
+    <div class="choice">
+     <%= f.radio_button :question2, "art", id: "question2_art" %>
+     <%= f.label :question2_art, "美術館や博物館をじっくり見てまわる" %>
+    </div>
+    <!-- 🍇 -->
+
+  </div>
+</div>  
+
+<!-- Q3 -->
+<div class="question-card">
+  <h3 class="question-title">
+    Q3. 旅行中、道に迷ってしまった！あなたなら？
+  </h3>
+
+ <div class="choices">
+
+    <div class="choice">
+     <%= f.radio_button :question3, "culture,city", id: "question3_culture_city" %>
+     <%= f.label :question3_culture_city, "地図アプリで自分で調べる" %>
+    </div>
+    <!-- 🍎・🍋-->
+
+    <div class="choice">
+     <%= f.radio_button :question3, "nature,adventure,art", id: "question3_nature_adventure_art" %>
+     <%= f.label :question3_nature_adventure_art, "せっかくだから街の雰囲気を楽しみながら周辺を歩いてみる" %>
+    </div>
+    <!-- 🫛・🍊・🍇-->
+
+
+    <div class="choice">
+     <%= f.radio_button :question3, "relax",id: "question3_relax" %>
+     <%= f.label :question3_relax, "一旦落ち着ける場所で休む" %>
+    </div>
+    <!-- 🌸 -->
+
+    <div class="choice">
+     <%= f.radio_button :question3, "local", id: "question3_local" %>
+     <%= f.label :question3_local, "現地の人にとにかく話しかけて道を教えてもらう" %>
+    </div>
+    <!-- 💎 -->
+
+  </div>
+</div>  
+    
+<!-- Q4 -->
+<div class="question-card">
+  <h3 class="question-title">
+    Q4. あなたのお腹は、どちらかというと強い方？
+  </h3>
+
+  <div class="choices">
+    <div class="choice">
+     <%= f.radio_button :question4, "adventure,local", id: "question4_adventure_local" %>
+     <%= f.label :question4_adventure_local, "かなり強い！気にせず何でも食べられる" %>
+    </div>
+    <!-- 🍊・💎 -->
+
+    <div class="choice">
+     <%= f.radio_button :question4, "city,art", id: "question4_city_art" %>
+     <%= f.label :question4_city_art, "普通。衛生面には少し気をつけたい" %>
+    </div>
+    <!-- 🍋・🍇 -->
+
+    <div class="choice">
+     <%= f.radio_button :question4, "culture,nature,relax", id: "question4_culture_nature_relax" %>
+     <%= f.label :question4_culture_nature_relax, "あまり強くない。旅行中は特に食事に気をつけたい" %>
+    </div>
+    <!-- 🍎・🫛・🌸 -->
+
+  </div>
+</div>  
+
+
+<!-- Q5 -->
+<div class="question-card">
+  <h3 class="question-title">
+    Q5. あなたが１番”自分らしく楽しめそう”なのは？
+  </h3>
+
+ <div class="choices">
+
+    <div class="choice">
+     <%= f.radio_button :question5, "culture,city", id: "question5_culture_city" %>
+     <%= f.label :question5_culture_city, "朝から夜まで予定を決めて、たくさん観光する" %>
+    </div>
+    <!-- 🍎・🍋-->
+
+    <div class="choice">
+     <%= f.radio_button :question5, "art", id: "question5_art" %>
+     <%= f.label :question5_art, "行きたい場所だけ決めておく" %>
+    </div>
+    <!-- 🍇-->
+
+
+    <div class="choice">
+     <%= f.radio_button :question5, "adventure,local",id: "question5_adventure_local" %>
+     <%= f.label :question5_adventure_local, "大まかに決めて、現地で臨機応変に予定を変える" %>
+    </div>
+    <!-- 🍊・💎-->
+
+    <div class="choice">
+     <%= f.radio_button :question5, "relax,nature", id: "question5_relax_nature" %>
+     <%= f.label :question5_relax_nature, "ほぼノープランで、その日の気分で決める" %>
+    </div>
+    <!-- 🌸・🫛 -->
+
+  </div>
+</div> 
+
+<!-- Q6 -->
+<div class="question-card">
+  <h3 class="question-title">
+    Q6. 旅行中、あなたが１番ストレスに感じそうなのは？
+  </h3>
+
+  <div class="choices">
+    <div class="choice">
+     <%= f.radio_button :question6, "nature", id: "question6_nature" %>
+     <%= f.label :question6_nature, "人が多すぎる" %>
+    </div>
+    <!-- 🫛 -->
+
+    <div class="choice">
+     <%= f.radio_button :question6, "art", id: "question6_art" %>
+     <%= f.label :question6_art, "移動に時間がかかりすぎる" %>
+    </div>
+    <!-- 🍇 -->
+
+    <div class="choice">
+     <%= f.radio_button :question6, "city", id: "question6_city" %>
+     <%= f.label :question6_city, "言葉が通じない" %>
+    </div>
+    <!-- 🍋 -->
+
+    <div class="choice">
+     <%= f.radio_button :question6, "local",id: "question6_local" %>
+     <%= f.label :question6_local, "お金がかかりすぎる" %>
+    </div>
+    <!-- 💎 -->
+
+    <div class="choice">
+     <%= f.radio_button :question6, "relax", id: "question6_relax" %>
+     <%= f.label :question6_relax, "予定が詰まり過ぎて休めない" %>
+    </div>
+    <!-- 🌸 -->
+
+    <div class="choice">
+     <%= f.radio_button :question6, "culture", id: "question6_culture" %>
+     <%= f.label :question6_culture, "天候や列車の遅延で予定が急遽変わる" %>
+    </div>
+    <!-- 🍎 -->
+
+    <div class="choice">
+     <%= f.radio_button :question6, "adventure", id: "question6_adventure" %>
+     <%= f.label :question6_adventure, "毎日同じような観光で退屈する" %>
+    </div>
+    <!-- 🍊 -->
+
+  </div>
+</div>  
+
+<!-- Q7 -->
+<div class="question-card">
+  <h3 class="question-title">
+    Q7. あなたの”旅のテーマ”は？
+  </h3>
+
+ <div class="choices">
+
+    <div class="choice">
+     <%= f.radio_button :question7, "culture,local", id: "question7_culture_local" %>
+     <%= f.label :question7_culture_local, "知らない世界を知る旅" %>
+    </div>
+    <!-- 🍎・💎-->
+
+    <div class="choice">
+     <%= f.radio_button :question7, "city", id: "question7_city" %>
+     <%= f.label :question7_city, "美味しいものを探す旅" %>
+    </div>
+    <!-- 🍋->
+     
+    <div class="choice">
+     <%= f.radio_button :question7, "adventure",id: "question7_adventure" %>
+     <%= f.label :question7_adventure, "新しい自分に出会う旅" %>
+    </div>
+    <!- 🍊 -->
+
+    <div class="choice">
+     <%= f.radio_button :question7, "relax", id: "question7_relax" %>
+     <%= f.label :question7_relax, "何もしない贅沢な旅" %>
+    </div>
+    <!-- 🌸 -->
+
+    <div class="choice">
+     <%= f.radio_button :question7, "art,nature", id: "question7_art_nature" %>
+     <%= f.label :question7_art_nature, "美しいものや自然に癒される旅" %>
+    </div>
+    <!-- 🍇・🫛-->
+
+  </div>
+</div>  
+
+<div class="test-submit">
+  <%= f.submit "診断する" %>
+</div>
+<% end %>
+
+</div>
+
+<h2 class="back-link">
+  <%= link_to tweets_path do %>
+    トップページに<br>戻る
+  <% end %>
+</h2>
+
+</div>
+
+
+<%= image_tag "art-girl.png", class: "art-girl" %>

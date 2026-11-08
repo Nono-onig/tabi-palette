@@ -1,0 +1,296 @@
+/* 診断ページ全体 */
+
+.test-page {
+  width: 100%;
+  min-height: 100vh;
+
+  padding: 30px 0 80px;
+
+  background-color: #fffdf8;
+
+  font-family: "Zen Maru Gothic", sans-serif;
+}
+
+/* Q1〜Q7すべてを包む空背景 */
+
+.test-header {
+  width: 96%;
+  margin: 20px auto 60px;
+
+  padding: 55px 40px 80px;
+
+  /* 空の画像 */
+  background-image: url("about-sky.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border: 3px solid #111;
+  border-radius: 70px;
+
+  /* 高さはQ1〜Q7に合わせて自動で伸びる */
+  height: auto;
+  display: block;
+}
+
+.test-header-text {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.test-header-text h1 {
+  margin: 0 0 12px;
+
+  color: white;
+
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 50px;
+  font-weight: 800;
+
+  -webkit-text-stroke: 0.5px #111;
+}
+
+.test-header-text p {
+  margin: 0;
+
+  color: white;
+  font-size: 30px;
+  font-weight: 700;
+
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.test-header {
+  position: relative;
+  padding-right: 110px;
+}
+
+.side-logo-flow {
+  position: absolute;
+  top: 200px;
+  right: -50px;
+  bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 500px;
+}
+
+.side-logo-flow span {
+  font-family: "Fredoka", sans-serif;
+  font-size: 80px;
+  font-weight: 700;
+
+  color: white;
+
+  white-space: nowrap;
+
+  transform: rotate(90deg);
+}
+
+/* 質問カード */
+
+.question-card {
+  width: 82%;
+  max-width: 1000px;
+
+  margin: 0 auto 55px;
+  padding: 35px 45px;
+
+  background-color: white;
+
+  border: 3px solid #111;
+  border-radius: 40px;
+}
+
+/* 質問タイトル*/
+
+.question-title {
+  display: inline-block;
+ width: 100%;
+  
+  margin-bottom: 28px;
+  padding: 10px 25px;
+
+  background-color: #f1846e;
+  color: white;
+
+  border: 3px solid #111;
+  border-radius: 30px;
+
+  font-size: 21px;
+  font-weight: 700;
+}
+
+/* 選択肢全体 */
+
+.choice {
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.choice input[type="radio"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  top: 0;
+  left: 0;
+
+  opacity: 0;
+  cursor: pointer;
+
+  z-index: 2;
+}
+
+.choice label {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  display: block;
+
+  padding: 16px 25px;
+
+  background-color: white;
+  color: #111;
+
+  border: 2px solid #111;
+  border-radius: 30px;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* ホバー */
+.choice:hover label {
+  background-color: #fff1ee;
+  transform: translateX(6px);
+}
+
+/* 選択したとき */
+.choice input[type="radio"]:checked + label {
+  background-color: #f1846e;
+  color: white;
+  font-weight: 700;
+  transform: translateX(8px);
+}
+
+/* 診断するボタン */
+
+.test-submit {
+  display: flex;
+  justify-content: center;
+  margin: 70px 0 50px;
+}
+
+.test-submit input {
+  width: 190px;
+  height: 190px;
+
+  border-radius: 50%;
+  border: 3px solid #111;
+
+  background-color: #f1846e;
+  color: white;
+
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.test-submit input:hover {
+  transform: rotate(10deg) scale(1.05);
+}
+
+/* トップページに戻る */
+
+.back-link {
+  position: fixed;
+  left: 40px;
+  bottom: 30px;
+
+  margin: 0;
+
+  z-index: 100;
+}
+
+.back-link a {
+  width: 110px;
+  height: 110px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  border: 3px solid #111;
+
+  background-color: white;
+  color: #f1846e;
+
+  text-align: center;
+  text-decoration: none;
+
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+
+  transition: 0.3s;
+}
+
+.back-link a:hover {
+  background-color: #f1846e;
+  color: white;
+
+  transform: rotate(-8deg) scale(1.05);
+}
+
+/* スマホ版 */
+
+@media screen and (max-width: 768px) {
+
+  .test-header {
+    width: 94%;
+    padding: 35px 20px;
+  }
+
+  .test-header h1 {
+    font-size: 30px;
+  }
+
+  .test-header p {
+    font-size: 15px;
+  }
+
+  .question-card {
+    width: 92%;
+
+    padding: 25px 20px;
+  }
+
+  .question-title {
+    font-size: 17px;
+     
+  }
+
+  .choice label {
+    font-size: 14px;
+  }
+
+}
+
+/* 女の子イラスト */
+.art-girl {
+  position: absolute;
+  right: 1000px;
+  bottom: -4500px;
+  width: 400px;
+  height: auto;
+  z-index: 4;
+}

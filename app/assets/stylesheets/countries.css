@@ -1,0 +1,457 @@
+/* 国別ページ 全体 */
+
+.country-page {
+  width: 92%;
+  max-width: 1100px;
+  margin: 50px auto 100px;
+  font-family: "Zen Maru Gothic", sans-serif;
+  color: #111;
+}
+
+/* 国名 */
+
+.country-header {
+  text-align: center;
+  padding: 55px 30px;
+  margin-bottom: 45px;
+
+  background-color: white;
+
+  border: 3px solid #111;
+  border-radius: 40px;
+}
+
+.country-mini-title {
+  font-family: "Fredoka", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+
+  letter-spacing: 3px;
+
+  margin-bottom: 8px;
+}
+
+.country-title {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+
+  font-size: 55px;
+  font-weight: 800;
+
+  margin-bottom: 12px;
+}
+
+.country-header-text {
+  font-size: 24px;
+}
+
+/* この国について */
+
+.country-about {
+  max-width: none;
+
+  margin: 0 0 45px;
+
+  padding: 32px 40px;
+
+  background-color: #fff6e8;
+
+  border-radius: 30px;
+
+  text-align: left;
+}
+
+.country-section-title {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+
+  font-size: 40px;
+  font-weight: 800;
+
+  margin-bottom: 18px;
+}
+
+.country-description {
+  font-size: 20px;
+
+  line-height: 2;
+
+  text-align: left;
+
+  margin: 0;
+}
+
+/* 情報カード */
+
+.country-card-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 25px;
+
+  margin-bottom: 30px;
+}
+
+.country-card {
+  min-height: 260px;
+
+  padding: 30px;
+
+  border: 3px solid #111;
+  border-radius: 35px;
+
+  box-shadow: 6px 6px 0 #111;
+
+  transition: 0.25s;
+}
+
+.country-card:hover {
+  transform: translateY(-5px);
+}
+
+.country-card-icon {
+  font-size: 65px;
+
+  margin-bottom: 10px;
+}
+
+.country-card h2 {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+
+  font-size: 30px;
+  font-weight: 800;
+
+  margin-bottom: 18px;
+}
+
+.country-card p,
+.country-card-text {
+  font-size: 20px;
+
+  line-height: 1.9;
+}
+
+/* すべてのカード共通 */
+
+.country-card,
+.country-wide-card {
+  background-color: white;
+
+  border: 3px solid #111;
+  border-radius: 35px;
+
+  box-shadow: 6px 6px 0 #111;
+
+  transition: 0.25s;
+}
+
+/* ホバーも全部共通 */
+.country-card:hover,
+.country-wide-card:hover {
+  transform: translateY(-5px);
+}
+
+/* カードの色を統一*/
+
+.country-card-price,
+.country-card-visa,
+.country-card-preparation,
+.country-card-items,
+.country-transport,
+.country-cautions {
+  background-color: #fffdf8;
+}
+
+/* 横長カード */
+
+.country-wide-card {
+  margin-top: 28px;
+
+  padding: 35px 40px;
+
+  border: 3px solid #111;
+  border-radius: 35px;
+
+  box-shadow: 6px 6px 0 #111;
+}
+
+.country-wide-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 20px;
+}
+
+.country-wide-icon {
+  font-size: 34px;
+}
+
+.country-wide-title h2 {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+
+  font-size: 27px;
+  font-weight: 800;
+}
+
+.country-wide-text {
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+/* 参考リンク */
+
+.country-link-area {
+  margin-top: 45px;
+
+  padding: 35px 40px;
+
+  text-align: center;
+
+  background-color: white;
+
+  border: 3px solid #111;
+  border-radius: 35px;
+}
+
+.country-link-mini {
+  font-family: "Fredoka", sans-serif;
+
+  font-size: 16px;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 5px;
+}
+
+.country-link-area h2 {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+
+  font-size: 25px;
+
+  margin-bottom: 18px;
+}
+
+.country-link-area p {
+  line-height: 1.8;
+}
+
+/* 公式サイトリンク */
+
+.country-official-link {
+  display: inline-block;
+
+  margin: 3px;
+
+  padding: 7px 15px;
+
+  background-color: #A1F7DC;
+
+  color: #111;
+
+  border: 2px solid #111;
+  border-radius: 30px;
+
+  font-weight: bold;
+  font-size: 18px;
+  text-decoration: none;
+
+  transition: 0.2s;
+}
+
+.country-official-link:hover {
+  background-color: #f1846e;
+
+  color: white;
+
+  transform: rotate(-2deg);
+}
+
+/* 戻るボタン */
+
+.country-back-area {
+  text-align: center;
+
+  margin-top: 55px;
+}
+
+.country-back-area {
+  text-align: center;
+  margin-top: 55px;
+}
+
+.country-back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 190px;
+  height: 190px;
+
+  background-color: white;
+  color: #f1846e;
+
+  border: 3px solid #111;
+  border-radius: 50%;
+
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+
+  text-align: center;
+  text-decoration: none;
+
+  transition: 0.3s;
+}
+
+.country-back-button:hover {
+  background-color: #f1846e;
+  color: white;
+
+  transform: rotate(-5deg) scale(1.05);
+}
+
+/* スマホ版　*/
+
+@media screen and (max-width: 768px) {
+
+  .country-page {
+    width: 92%;
+  }
+
+  .country-header {
+    padding: 40px 20px;
+  }
+
+  .country-title {
+    font-size: 38px;
+  }
+
+  .country-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .country-card {
+    min-height: auto;
+  }
+
+  .country-wide-card {
+    padding: 28px 25px;
+  }
+
+}
+
+/* メイン写真 */
+
+.country-header {
+  position: relative;
+
+  width: 108%;
+  height: 520px;
+
+  margin-left: -4%;
+  margin-bottom: 45px;
+
+  background-size: cover;
+  background-position: center;
+
+  border: 3px solid #111;
+  border-radius: 38px;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 中央の白いカード */
+
+.country-title-card {
+  position: relative;
+  z-index: 2;
+
+  width: 55%;
+  max-width: 600px;
+
+  padding: 38px 35px;
+
+  background-color: rgba(255, 253, 248, 0.95);
+
+  border: 3px solid #111;
+  border-radius: 28px;
+
+  text-align: center;
+
+  box-shadow: 8px 8px 0 #111;
+
+  transform: rotate(-1deg);
+}
+
+.country-title-line {
+  width: 85%;
+
+  margin: 0 auto 18px;
+
+  border-top: 3px dashed #f1846e;
+}
+
+/* 右の Good Trip */
+.country-photo-doodle {
+  position: absolute;
+
+  right: 45px;
+  bottom: 65px;
+
+  z-index: 3;
+
+  color: white;
+
+  font-family: "Fredoka", sans-serif;
+
+  font-size: 28px;
+
+  transform: rotate(-7deg);
+
+  text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+
+/* 交通・注意点を横並び*/
+
+.country-wide-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 25px;
+
+  margin-top: 28px;
+}
+
+.country-wide-grid .country-wide-card {
+  margin-top: 0;
+}
+
+/* 言語切り替えリンク */
+.country-language-switch {
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px 20px;
+}
+
+.country-language-link {
+  display: inline-block;
+  color: #276b82;
+  font-weight: bold;
+  text-decoration: none;
+  border: 1px solid #276b82;
+  border-radius: 20px;
+  padding: 8px 16px;
+  transition: background-color 0.2s ease;
+}
+
+.country-language-link:hover {
+  background-color: #eaf5f8;
+}

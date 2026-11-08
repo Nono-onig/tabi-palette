@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Nono" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=M+PLUS+Rounded+1c:wght@700;800;900&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
+  
+    
+    
+    </head>
+
+<body>
+  <header>
+  <h1><%= link_to "tabi✈︎palette", root_path %></h1>
+
+  <div class="header-list">
+    <% if user_signed_in? %>
+
+      <div class="header-buttons">
+        <%= link_to "マイページ",
+          user_path(current_user.id),
+          class: "btn-circle login-btn" %>
+
+        <%= button_to "ログアウト✈︎",
+          destroy_user_session_path,
+          method: :delete,
+          class: "btn-circle signup-btn" %>
+      </div>
+
+    <% else %>
+
+      <div class="header-buttons">
+        <%= link_to "登録する",
+          new_user_registration_path,
+          class: "btn-circle signup-btn" %>
+
+        <%= link_to "ログイン",
+          new_user_session_path,
+          class: "btn-circle login-btn" %>
+      </div>
+
+    <% end %>
+  </div>
+</header>
+
+  <main>
+    <%= yield %>
+  </main>
+  
+  
+  <footer>
+      <p>Copyright © GeekSalon All Rights Reserved.</p>
+  </footer>
+
+  </body>
+
+</html>

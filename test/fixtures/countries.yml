@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  country: MyString
+  description: MyText
+  price: MyText
+  visa_timing: MyText
+  preparation: MyText
+  useful_items: MyText
+  transportation: MyText
+  cautions: MyText
+
+two:
+  country: MyString
+  description: MyText
+  price: MyText
+  visa_timing: MyText
+  preparation: MyText
+  useful_items: MyText
+  transportation: MyText
+  cautions: MyText
