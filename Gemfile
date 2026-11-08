@@ -70,6 +70,6 @@ gem "activestorage-cloudinary-service"
 
 gem "sass-rails"
 
-gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 2.2"
 
 gem "json", "~> 2.20"
