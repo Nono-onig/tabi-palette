@@ -1,0 +1,140 @@
+/* =========================================================
+   認証まわり（ログイン・新規登録・パスワード・プロフィール編集）
+   ========================================================= */
+.auth-page {
+  background:
+    radial-gradient(ellipse 45% 35% at 0% 0%, rgba(142, 197, 232, 0.28), transparent 70%),
+    radial-gradient(ellipse 45% 35% at 100% 100%, rgba(242, 166, 90, 0.16), transparent 70%);
+}
+
+.auth-shell {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 960px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.auth-visual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 520px;
+  padding: 36px;
+  color: #fff;
+  background:
+    linear-gradient(180deg, rgba(31, 52, 78, 0.15), rgba(31, 52, 78, 0.65)),
+    image-url("web/about-sky.jpg") center / cover no-repeat;
+}
+
+.auth-visual-signup {
+  background:
+    linear-gradient(180deg, rgba(31, 52, 78, 0.1), rgba(31, 52, 78, 0.6)),
+    image-url("thumbs/italy.jpg") center / cover no-repeat;
+}
+
+.auth-visual-logo {
+  font-family: var(--font-logo);
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.auth-visual-copy {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.7;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+}
+
+.auth-card {
+  padding: clamp(28px, 5vw, 52px);
+}
+
+.auth-card-solo {
+  max-width: 520px;
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.auth-title {
+  font-size: clamp(24px, 3.4vw, 30px);
+}
+
+.auth-lead {
+  color: var(--ink-soft);
+  font-size: 15px;
+  margin: 6px 0 28px;
+}
+
+.auth-links {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--ink-mute);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+@media (max-width: 760px) {
+  .auth-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-visual {
+    min-height: 160px;
+    padding: 24px;
+  }
+
+  .auth-visual-copy {
+    font-size: 18px;
+  }
+}
+
+/* アカウント削除 */
+.danger-zone {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  border-color: #f1d6d2;
+  box-shadow: none;
+}
+
+.danger-zone h2 {
+  font-size: 17px;
+  color: var(--danger);
+}
+
+.danger-zone p {
+  font-size: 14px;
+  color: var(--ink-soft);
+}

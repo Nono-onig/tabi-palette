@@ -1,121 +1,114 @@
-<div class="result-page">
+<% content_for :title, "診断結果" %>
+<%
+  types = ApplicationHelper::PALETTE_TYPES
+  sorted_types = types.sort_by { |t| -@percentages[t[:key]].to_i }
+  top = types.find { |t| t[:key] == @top_type }
 
-  <!-- タイトル -->
-  <section class="result-intro">
-    <p class="result-mini-title">Diagnosis Result</p>
+  # 円グラフ（conic-gradient）用の色の区切り
+  cursor = 0
+  stops = types.filter_map do |t|
+    pct = @percentages[t[:key]].to_i
+    next if pct.zero?
+    from = cursor
+    cursor += pct
+    "var(--c-#{t[:key]}) #{from}% #{[cursor, 100].min}%"
+  end
+  donut = stops.any? ? "conic-gradient(#{stops.join(', ')}, var(--line) #{[cursor, 100].min}% 100%)" : "var(--line)"
 
-    <h1 class="result-main-title">
-      あなたの旅のPalette
-    </h1>
+  country_photo = country_image_path(@country_result)
+%>
 
-    <p class="result-subtitle">
-      あなたにぴったりな旅行先を診断しました！♡
-    </p>
-  </section>
+<div class="result-page page">
+  <div class="container">
 
-
-  <!-- 7つのPalette -->
-  <section class="palette-section">
-    <h2 class="result-section-title">あなたのPalette</h2>
-
-    <div class="paint-palette">
-      <div class="palette-hole"></div>
-
-      <div class="paint-color culture-color">
-        <span class="paint-icon">🍓</span>
-        <span class="paint-percent"><%= @percentages["culture"] %>%</span>
-        <span class="paint-name">Culture</span>
-      </div>
-
-      <div class="paint-color nature-color">
-        <span class="paint-icon">🍏</span>
-        <span class="paint-percent"><%= @percentages["nature"] %>%</span>
-        <span class="paint-name">Nature</span>
-      </div>
-
-      <div class="paint-color adventure-color">
-        <span class="paint-icon">🍊</span>
-        <span class="paint-percent"><%= @percentages["adventure"] %>%</span>
-        <span class="paint-name">Adventure</span>
-      </div>
-
-      <div class="paint-color relax-color">
-        <span class="paint-icon">🌸</span>
-        <span class="paint-percent"><%= @percentages["relax"] %>%</span>
-        <span class="paint-name">Relax</span>
-      </div>
-
-      <div class="paint-color local-color">
-        <span class="paint-icon">💎</span>
-        <span class="paint-percent"><%= @percentages["local"] %>%</span>
-        <span class="paint-name">Local</span>
-      </div>
-
-      <div class="paint-color city-color">
-        <span class="paint-icon">🍋</span>
-        <span class="paint-percent"><%= @percentages["city"] %>%</span>
-        <span class="paint-name">City</span>
-      </div>
-
-      <div class="paint-color art-color">
-        <span class="paint-icon">🍇</span>
-        <span class="paint-percent"><%= @percentages["art"] %>%</span>
-        <span class="paint-name">Art</span>
-      </div>
+    <div class="page-head">
+      <p class="eyebrow">Diagnosis Result</p>
+      <h1 class="page-title">あなたの旅のPalette</h1>
+      <p class="page-lead">あなたにぴったりな旅のスタイルと行き先を診断しました。</p>
     </div>
-  </section>
 
+    <!-- 旅タイプ + Palette -->
+    <section class="result-type card">
+      <div class="result-donut-wrap">
+        <div class="result-donut" style="background: <%= donut %>;" role="img"
+             aria-label="あなたのPalette：<%= sorted_types.map { |t| "#{t[:ja]} #{@percentages[t[:key]]}%" }.join('、') %>">
+          <div class="result-donut-center">
+            <span class="result-donut-icon" aria-hidden="true"><%= top&.dig(:icon) %></span>
+            <span class="result-donut-label"><%= top&.dig(:label) %></span>
+          </div>
+        </div>
+      </div>
 
-  <!-- 旅タイプ -->
-  <section class="travel-type-section">
-    <div class="travel-type-label">あなたの旅タイプ</div>
+      <div class="result-type-body">
+        <p class="result-kicker">あなたの旅タイプは…</p>
+        <h2 class="result-type-name"><%= @travel_type[:name] %></h2>
+        <p class="result-type-desc"><%= @travel_type[:description] %></p>
+      </div>
+    </section>
 
-    <div class="travel-type-card">
-      <p class="type-decoration">✦ ･ﾟ: *✧･ﾟ:* ✦</p>
+    <!-- 7色の内訳 -->
+    <section class="result-palette card card-pad">
+      <h2 class="result-block-title">Paletteの内訳</h2>
+      <ul class="palette-bars">
+        <% sorted_types.each do |t| %>
+          <% pct = @percentages[t[:key]].to_i %>
+          <li class="palette-bar<%= ' is-top' if t[:key] == @top_type %>">
+            <span class="palette-bar-label">
+              <span class="palette-bar-dot" style="background: var(--c-<%= t[:key] %>)"></span>
+              <span class="palette-bar-icon" aria-hidden="true"><%= t[:icon] %></span>
+              <%= t[:ja] %>
+              <span class="palette-bar-en"><%= t[:label] %></span>
+            </span>
+            <span class="palette-bar-track">
+              <span class="palette-bar-fill" style="width: <%= pct %>%; background: var(--c-<%= t[:key] %>)"></span>
+            </span>
+            <span class="palette-bar-pct"><%= pct %>%</span>
+          </li>
+        <% end %>
+      </ul>
+    </section>
 
-      <h2 class="travel-type-name">
-        <%= @travel_type[:name] %>
-      </h2>
+    <!-- おすすめの国 -->
+    <section class="result-country">
+      <div class="result-country-media">
+        <% if country_photo %>
+          <img src="<%= country_photo %>" alt="<%= @country_result %>の風景">
+        <% end %>
+        <span class="result-country-badge">Your Next Destination ✈︎</span>
+      </div>
 
-      <p class="travel-type-description">
-        <%= @travel_type[:description] %>
-      </p>
+      <div class="result-country-body">
+        <p class="result-kicker">あなたにぴったりの旅行先は</p>
+        <h2 class="result-country-name"><%= @country_result %></h2>
+        <% if @country&.country_en.present? %>
+          <p class="result-country-en"><%= @country.country_en %></p>
+        <% end %>
+
+        <% if @country&.description.present? %>
+          <p class="result-country-desc"><%= truncate(@country.description.squish, length: 120) %></p>
+        <% end %>
+
+        <ul class="result-country-points">
+          <li>💰 費用の目安</li>
+          <li>🛂 ビザ・入国</li>
+          <li>🎒 持ち物</li>
+          <li>🚃 現地の交通</li>
+        </ul>
+
+        <div class="btn-row">
+          <% if @country %>
+            <%= link_to country_path(@country), class: "btn btn-primary btn-lg" do %>
+              旅の準備ガイドを見る <span aria-hidden="true">→</span>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </section>
+
+    <div class="btn-row center result-actions">
+      <%= link_to "もう一度診断する", new_test_path, class: "btn btn-outline" %>
+      <%= link_to "みんなの投稿を見る", all_posts_tweets_path, class: "btn btn-outline" %>
+      <%= link_to "トップページに戻る", root_path, class: "btn btn-ghost" %>
     </div>
-  </section>
-
-
-  <!-- おすすめの国 -->
-  <section class="country-result-section">
-    <div class="country-result-label">あなたにぴったりの旅行先</div>
-
-    <div class="country-result-card">
-      <p class="country-small-text">Your Next Destination</p>
-
-      <h2 class="country-result-name">
-        <%= @country_result %>
-      </h2>
-
-      <p class="country-decoration">✈︎ ｡･:*˚:✧｡</p>
-    </div>
-  
-  </section>
-
-
-  <!-- ボタン -->
-  <div class="result-actions">
-    <%= link_to country_path(@country), class: "result-circle-button detail-button" do %>
-      <span>診断の<br>詳細を見る▶︎▶︎▶︎</span>
-    <% end %>
-
-    <%= link_to tweets_path, class: "result-circle-button top-button" do %>
-      <span>トップページに<br>戻る</span>
-    <% end %>
   </div>
-
 </div>
-
-<!-- 絵筆のイラスト -->
-<%= image_tag "paint.png", class: "paint" %>
-
-<!-- 飛行機のイラスト -->
-<%= image_tag "test-plane.png", class: "test-plane-mark" %>

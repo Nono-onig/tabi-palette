@@ -1,21 +1,22 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+thailand:
+  country: タイ
+  country_en: Thailand
+  description: 微笑みの国
+  price: 日本より安め
+  visa_timing: 30日以内の観光はビザ不要
+  preparation: パスポート
+  useful_items: 日焼け止め
+  transportation: BTS、MRT
+  cautions: 王室への敬意を忘れずに
+  link: https://example.com
 
-one:
-  country: MyString
-  description: MyText
-  price: MyText
-  visa_timing: MyText
-  preparation: MyText
-  useful_items: MyText
-  transportation: MyText
-  cautions: MyText
+italy:
+  country: イタリア
+  country_en: Italy
+  description: 美術と食の国
+  price: 日本とほぼ同じ
 
-two:
-  country: MyString
-  description: MyText
-  price: MyText
-  visa_timing: MyText
-  preparation: MyText
-  useful_items: MyText
-  transportation: MyText
-  cautions: MyText
+vietnam:
+  country: ベトナム
+  country_en: Vietnam
+  description: 活気あふれるローカルの国

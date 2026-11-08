@@ -1,8 +1,13 @@
-
-<h1>tabi✈︎palette</h1>
-<h2> @english?あなたの旅のパレットを見つけよう</h2>
-
-<p>
-７つの質問に答えて、あなたにぴったりな旅先を見つけよう！
-</p>
-
+<% content_for :title, "旅先診断" %>
+<div class="page">
+  <div class="container-narrow tests-intro">
+    <div class="card card-pad">
+      <p class="eyebrow">Travel Palette Check</p>
+      <h1 class="page-title">あなたの旅のパレットを見つけよう</h1>
+      <p class="page-lead">7つの質問に答えて、あなたにぴったりな旅先を見つけよう！</p>
+      <div class="btn-row center" style="margin-top: 28px;">
+        <%= link_to "旅先診断を始める →", new_test_path, class: "btn btn-accent btn-lg" %>
+      </div>
+    </div>
+  </div>
+</div>

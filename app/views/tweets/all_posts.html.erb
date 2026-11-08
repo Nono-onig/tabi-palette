@@ -1,56 +1,41 @@
-<div class="all-posts-page">
+<% content_for :title, "みんなの投稿" %>
+<div class="all-posts-page page">
+  <div class="container">
 
-  <div class="all-posts-heading">
-    <p class="all-posts-mini-title">Travel Posts ✈︎</p>
-    <h1>みんなの投稿</h1>
-  </div>
+    <div class="page-head">
+      <p class="eyebrow">Travel Posts</p>
+      <h1 class="page-title">みんなの投稿</h1>
+      <p class="page-lead">旅好きのみんなが見つけた、とっておきの場所と思い出。</p>
+    </div>
 
+    <div class="all-posts-toolbar">
+      <%= form_tag(url_for(controller: "tweets", action: "index", anchor: "posts"), method: :get, class: "all-posts-search") do %>
+        <label for="search" class="visually-hidden">キーワード</label>
+        <span aria-hidden="true">🔎</span>
+        <%= text_field_tag :search, nil, class: "search-input", placeholder: "国名や場所でけんさく" %>
+        <%= submit_tag "検索", name: nil, class: "btn btn-primary btn-sm" %>
+      <% end %>
 
-  <div class="all-posts-grid">
-
-    <% @tweets.each do |t| %>
-
-      <div class="post-card">
-
-        <% if t.image.attached? %>
-          <%= image_tag t.image,
-            class: "post-image",
-            loading: "lazy" %>
-        <% end %>
-
-
-        <div class="post-info">
-
-          <h3><%= t.place %></h3>
-
-          <% if t.location.present? %>
-            <p>📍 <%= t.location %></p>
-          <% end %>
-
-          <% if t.comment.present? %>
-            <p class="post-comment">
-              <%= truncate(t.comment, length: 45) %>
-            </p>
-          <% end %>
-
-
-          <%= link_to "くわしく見る",
-            tweet_path(t),
-            class: "post-detail-link" %>
-
-        </div>
-
+      <div class="btn-row">
+        <span class="all-posts-count"><%= @tweets.size %>件の投稿</span>
+        <%= link_to "投稿する ✈︎", new_tweet_path, class: "btn btn-accent btn-sm" %>
       </div>
+    </div>
 
+    <% if @tweets.any? %>
+      <div class="post-grid">
+        <%= render partial: "tweets/post_card", collection: @tweets, as: :tweet %>
+      </div>
+    <% else %>
+      <div class="empty-state">
+        <p class="empty-state-icon">✈︎</p>
+        <p>まだ投稿がありません。最初の旅の思い出をシェアしてみませんか？</p>
+        <%= link_to "旅の思い出を投稿する", new_tweet_path, class: "btn btn-primary" %>
+      </div>
     <% end %>
 
+    <div class="back-area">
+      <%= link_to "← トップに戻る", root_path, class: "btn btn-ghost" %>
+    </div>
   </div>
-
-
-  <div class="all-posts-back">
-    <%= link_to "← トップに戻る",
-      tweets_path,
-      class: "new-post-back-button" %>
-  </div>
-
 </div>

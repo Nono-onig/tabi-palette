@@ -1,457 +1,225 @@
-/* 国別ページ 全体 */
-
+/* =========================================================
+   国別旅行準備（countries/show）
+   ========================================================= */
 .country-page {
-  width: 92%;
-  max-width: 1100px;
-  margin: 50px auto 100px;
-  font-family: "Zen Maru Gothic", sans-serif;
-  color: #111;
+  padding-bottom: 88px;
 }
 
-/* 国名 */
-
-.country-header {
-  text-align: center;
-  padding: 55px 30px;
-  margin-bottom: 45px;
-
-  background-color: white;
-
-  border: 3px solid #111;
-  border-radius: 40px;
+/* ---------- ヒーロー ---------- */
+.country-hero {
+  position: relative;
+  min-height: clamp(320px, 48vw, 480px);
+  display: flex;
+  color: #fff;
+  background-color: var(--blue);
+  background-size: cover;
+  background-position: center;
 }
 
-.country-mini-title {
-  font-family: "Fredoka", sans-serif;
-  font-size: 26px;
+.country-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 32, 44, 0.2) 0%, rgba(20, 32, 44, 0.05) 40%, rgba(20, 32, 44, 0.7) 100%);
+}
+
+.country-hero-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: clamp(60px, 7vw, 84px);
+}
+
+.country-lang {
+  align-self: flex-end;
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.country-lang-link {
+  padding: 6px 16px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 14px;
   font-weight: 700;
+  text-decoration: none;
+}
 
-  letter-spacing: 3px;
+.country-lang-link.is-active {
+  background: #fff;
+  color: var(--ink);
+}
 
-  margin-bottom: 8px;
+.country-eyebrow {
+  color: #ffd9b0;
 }
 
 .country-title {
-  font-family: "M PLUS Rounded 1c", sans-serif;
-
-  font-size: 55px;
-  font-weight: 800;
-
-  margin-bottom: 12px;
+  font-size: clamp(36px, 7vw, 64px);
+  line-height: 1.2;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
 }
 
-.country-header-text {
-  font-size: 24px;
+.country-hero-text {
+  margin-top: 8px;
+  font-size: clamp(15px, 1.8vw, 18px);
+  opacity: 0.92;
 }
 
-/* この国について */
+/* ---------- 本文 ---------- */
+.country-body {
+  margin-top: -28px;
+  position: relative;
+}
+
+.country-toc {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 10px;
+  margin-bottom: 28px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  scrollbar-width: none;
+}
+
+.country-toc::-webkit-scrollbar {
+  display: none;
+}
+
+.country-toc a {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  border-radius: 999px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.country-toc a:hover {
+  background: var(--sky-soft);
+  color: var(--blue-deep);
+}
+
+.country-about,
+.country-card,
+.country-link {
+  scroll-margin-top: 90px;
+}
 
 .country-about {
-  max-width: none;
-
-  margin: 0 0 45px;
-
-  padding: 32px 40px;
-
-  background-color: #fff6e8;
-
-  border-radius: 30px;
-
-  text-align: left;
+  margin-bottom: 24px;
 }
 
-.country-section-title {
-  font-family: "M PLUS Rounded 1c", sans-serif;
-
-  font-size: 40px;
-  font-weight: 800;
-
-  margin-bottom: 18px;
-}
-
-.country-description {
+.country-section-title,
+.country-card-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   font-size: 20px;
-
-  line-height: 2;
-
-  text-align: left;
-
-  margin: 0;
+  margin-bottom: 14px;
 }
 
-/* 情報カード */
-
-.country-card-grid {
+.country-icon {
   display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  background: var(--sky-soft);
+  font-size: 22px;
+}
 
+.country-text {
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.95;
+  overflow-wrap: anywhere;
+}
+
+.country-text p + p {
+  margin-top: 10px;
+}
+
+/* ---------- 情報カード ---------- */
+.country-grid {
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
-
-  gap: 25px;
-
-  margin-bottom: 30px;
+  gap: 20px;
+  margin-bottom: 24px;
 }
 
 .country-card {
-  min-height: 260px;
-
-  padding: 30px;
-
-  border: 3px solid #111;
-  border-radius: 35px;
-
-  box-shadow: 6px 6px 0 #111;
-
-  transition: 0.25s;
+  padding: clamp(22px, 3vw, 32px);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border-top: 4px solid var(--sky);
 }
 
-.country-card:hover {
-  transform: translateY(-5px);
+.country-card.is-wide {
+  grid-column: 1 / -1;
 }
 
-.country-card-icon {
-  font-size: 65px;
-
-  margin-bottom: 10px;
+.country-card-orange {
+  border-top-color: var(--orange);
 }
 
-.country-card h2 {
-  font-family: "M PLUS Rounded 1c", sans-serif;
-
-  font-size: 30px;
-  font-weight: 800;
-
-  margin-bottom: 18px;
+.country-card-orange .country-icon {
+  background: var(--orange-soft);
 }
 
-.country-card p,
-.country-card-text {
-  font-size: 20px;
-
-  line-height: 1.9;
+.country-card-warn {
+  border-top-color: var(--c-culture);
+  background: #fffaf8;
 }
 
-/* すべてのカード共通 */
-
-.country-card,
-.country-wide-card {
-  background-color: white;
-
-  border: 3px solid #111;
-  border-radius: 35px;
-
-  box-shadow: 6px 6px 0 #111;
-
-  transition: 0.25s;
+.country-card-warn .country-icon {
+  background: #fbe5e1;
 }
 
-/* ホバーも全部共通 */
-.country-card:hover,
-.country-wide-card:hover {
-  transform: translateY(-5px);
-}
-
-/* カードの色を統一*/
-
-.country-card-price,
-.country-card-visa,
-.country-card-preparation,
-.country-card-items,
-.country-transport,
-.country-cautions {
-  background-color: #fffdf8;
-}
-
-/* 横長カード */
-
-.country-wide-card {
-  margin-top: 28px;
-
-  padding: 35px 40px;
-
-  border: 3px solid #111;
-  border-radius: 35px;
-
-  box-shadow: 6px 6px 0 #111;
-}
-
-.country-wide-title {
-  display: flex;
-
-  align-items: center;
-
-  gap: 12px;
-
-  margin-bottom: 20px;
-}
-
-.country-wide-icon {
-  font-size: 34px;
-}
-
-.country-wide-title h2 {
-  font-family: "M PLUS Rounded 1c", sans-serif;
-
-  font-size: 27px;
-  font-weight: 800;
-}
-
-.country-wide-text {
-  font-size: 16px;
-  line-height: 1.9;
-}
-
-/* 参考リンク */
-
-.country-link-area {
-  margin-top: 45px;
-
-  padding: 35px 40px;
-
-  text-align: center;
-
-  background-color: white;
-
-  border: 3px solid #111;
-  border-radius: 35px;
-}
-
-.country-link-mini {
-  font-family: "Fredoka", sans-serif;
-
-  font-size: 16px;
-
-  letter-spacing: 2px;
-
-  margin-bottom: 5px;
-}
-
-.country-link-area h2 {
-  font-family: "M PLUS Rounded 1c", sans-serif;
-
-  font-size: 25px;
-
-  margin-bottom: 18px;
-}
-
-.country-link-area p {
-  line-height: 1.8;
-}
-
-/* 公式サイトリンク */
-
-.country-official-link {
-  display: inline-block;
-
-  margin: 3px;
-
-  padding: 7px 15px;
-
-  background-color: #A1F7DC;
-
-  color: #111;
-
-  border: 2px solid #111;
-  border-radius: 30px;
-
-  font-weight: bold;
-  font-size: 18px;
-  text-decoration: none;
-
-  transition: 0.2s;
-}
-
-.country-official-link:hover {
-  background-color: #f1846e;
-
-  color: white;
-
-  transform: rotate(-2deg);
-}
-
-/* 戻るボタン */
-
-.country-back-area {
-  text-align: center;
-
-  margin-top: 55px;
-}
-
-.country-back-area {
-  text-align: center;
-  margin-top: 55px;
-}
-
-.country-back-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 190px;
-  height: 190px;
-
-  background-color: white;
-  color: #f1846e;
-
-  border: 3px solid #111;
-  border-radius: 50%;
-
-  font-family: "M PLUS Rounded 1c", sans-serif;
-  font-size: 20px;
-  font-weight: 800;
-
-  text-align: center;
-  text-decoration: none;
-
-  transition: 0.3s;
-}
-
-.country-back-button:hover {
-  background-color: #f1846e;
-  color: white;
-
-  transform: rotate(-5deg) scale(1.05);
-}
-
-/* スマホ版　*/
-
-@media screen and (max-width: 768px) {
-
-  .country-page {
-    width: 92%;
-  }
-
-  .country-header {
-    padding: 40px 20px;
-  }
-
-  .country-title {
-    font-size: 38px;
-  }
-
-  .country-card-grid {
+@media (max-width: 760px) {
+  .country-grid {
     grid-template-columns: 1fr;
   }
-
-  .country-card {
-    min-height: auto;
-  }
-
-  .country-wide-card {
-    padding: 28px 25px;
-  }
-
 }
 
-/* メイン写真 */
-
-.country-header {
-  position: relative;
-
-  width: 108%;
-  height: 520px;
-
-  margin-left: -4%;
-  margin-bottom: 45px;
-
-  background-size: cover;
-  background-position: center;
-
-  border: 3px solid #111;
-  border-radius: 38px;
-
-  overflow: hidden;
-
+/* ---------- 参考リンク ---------- */
+.country-link {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  background: linear-gradient(135deg, var(--sky-soft), var(--surface));
 }
 
-/* 中央の白いカード */
-
-.country-title-card {
-  position: relative;
-  z-index: 2;
-
-  width: 55%;
-  max-width: 600px;
-
-  padding: 38px 35px;
-
-  background-color: rgba(255, 253, 248, 0.95);
-
-  border: 3px solid #111;
-  border-radius: 28px;
-
-  text-align: center;
-
-  box-shadow: 8px 8px 0 #111;
-
-  transform: rotate(-1deg);
+.country-link .country-section-title {
+  margin-bottom: 4px;
 }
 
-.country-title-line {
-  width: 85%;
-
-  margin: 0 auto 18px;
-
-  border-top: 3px dashed #f1846e;
+.country-link-text {
+  color: var(--ink-soft);
+  font-size: 15px;
 }
 
-/* 右の Good Trip */
-.country-photo-doodle {
-  position: absolute;
-
-  right: 45px;
-  bottom: 65px;
-
-  z-index: 3;
-
-  color: white;
-
-  font-family: "Fredoka", sans-serif;
-
-  font-size: 28px;
-
-  transform: rotate(-7deg);
-
-  text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.4);
+/* ---------- 投稿 ---------- */
+.country-posts {
+  margin-top: 56px;
 }
 
-
-/* 交通・注意点を横並び*/
-
-.country-wide-grid {
-  display: grid;
-
-  grid-template-columns: repeat(2, 1fr);
-
-  gap: 25px;
-
-  margin-top: 28px;
-}
-
-.country-wide-grid .country-wide-card {
-  margin-top: 0;
-}
-
-/* 言語切り替えリンク */
-.country-language-switch {
-  display: flex;
-  justify-content: flex-end;
-  padding: 12px 20px;
-}
-
-.country-language-link {
-  display: inline-block;
-  color: #276b82;
-  font-weight: bold;
-  text-decoration: none;
-  border: 1px solid #276b82;
-  border-radius: 20px;
-  padding: 8px 16px;
-  transition: background-color 0.2s ease;
-}
-
-.country-language-link:hover {
-  background-color: #eaf5f8;
+.country-posts .section-title {
+  margin-bottom: 20px;
 }

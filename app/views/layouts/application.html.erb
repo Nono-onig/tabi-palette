@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
-    <title><%= content_for(:title) || "Nono" %></title>
+    <title><%= content_for?(:title) ? "#{yield(:title)} | tabi✈︎palette" : "tabi✈︎palette — 旅のワクワクを、自分らしい色で見つける" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="7つの質問であなたにぴったりの旅先を診断。国ごとの旅行準備情報や、みんなの旅の思い出も見つかる旅行Webアプリ tabi✈︎palette。">
+    <meta name="theme-color" content="#fbf8f3">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,62 +15,80 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-  
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  </head>
 
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=M+PLUS+Rounded+1c:wght@700;800;900&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
-  
-  
-    
-    
-    </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <%= link_to root_path, class: "logo", "aria-label": "tabi palette トップへ" do %>
+          tabi<span class="logo-mark">✈︎</span>palette
+        <% end %>
 
-<body>
-  <header>
-  <h1><%= link_to "tabi✈︎palette", root_path %></h1>
+        <nav class="site-nav" aria-label="メインメニュー">
+          <%= link_to "旅先診断", new_test_path, class: "site-nav-link" %>
+          <%= link_to "みんなの投稿", all_posts_tweets_path, class: "site-nav-link" %>
+          <%= link_to "投稿する", new_tweet_path, class: "site-nav-link" %>
+          <% if user_signed_in? %>
+            <%= link_to "マイページ", user_path(current_user.id), class: "site-nav-link" %>
+          <% end %>
+        </nav>
 
-  <div class="header-list">
-    <% if user_signed_in? %>
-
-      <div class="header-buttons">
-        <%= link_to "マイページ",
-          user_path(current_user.id),
-          class: "btn-circle login-btn" %>
-
-        <%= button_to "ログアウト✈︎",
-          destroy_user_session_path,
-          method: :delete,
-          class: "btn-circle signup-btn" %>
+        <div class="site-actions">
+          <% if user_signed_in? %>
+            <%= button_to "ログアウト",
+              destroy_user_session_path,
+              method: :delete,
+              class: "btn btn-outline btn-sm" %>
+          <% else %>
+            <%= link_to "ログイン", new_user_session_path, class: "btn btn-ghost btn-sm" %>
+            <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary btn-sm" %>
+          <% end %>
+        </div>
       </div>
+    </header>
 
-    <% else %>
-
-      <div class="header-buttons">
-        <%= link_to "登録する",
-          new_user_registration_path,
-          class: "btn-circle signup-btn" %>
-
-        <%= link_to "ログイン",
-          new_user_session_path,
-          class: "btn-circle login-btn" %>
+    <% if notice.present? || alert.present? %>
+      <div class="container flash-area" data-turbo-temporary>
+        <% if notice.present? %>
+          <p class="flash flash-notice" role="status">✈︎ <%= notice %></p>
+        <% end %>
+        <% if alert.present? %>
+          <p class="flash flash-alert" role="alert"><%= alert %></p>
+        <% end %>
       </div>
-
     <% end %>
-  </div>
-</header>
 
-  <main>
-    <%= yield %>
-  </main>
-  
-  
-  <footer>
-      <p>Copyright © GeekSalon All Rights Reserved.</p>
-  </footer>
+    <main>
+      <%= yield %>
+    </main>
 
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer-inner">
+          <div>
+            <%= link_to root_path, class: "logo" do %>
+              tabi<span class="logo-mark">✈︎</span>palette
+            <% end %>
+            <p class="footer-tagline">旅のワクワクを、自分らしい色で見つける。</p>
+          </div>
+
+          <ul class="footer-links">
+            <li><%= link_to "トップ", root_path %></li>
+            <li><%= link_to "旅先診断", new_test_path %></li>
+            <li><%= link_to "みんなの投稿", all_posts_tweets_path %></li>
+            <li><%= link_to "投稿する", new_tweet_path %></li>
+          </ul>
+        </div>
+
+        <p class="footer-copy">Copyright © GeekSalon All Rights Reserved.</p>
+      </div>
+    </footer>
   </body>
-
 </html>
