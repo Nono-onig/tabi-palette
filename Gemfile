@@ -72,4 +72,4 @@ gem "sass-rails"
 
 gem "image_processing", "~> 1.2"
 
-gem "json", "~> 2.20"
+gem "json", "~> 3.1"
