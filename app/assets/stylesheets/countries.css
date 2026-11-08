@@ -11,7 +11,7 @@
   min-height: clamp(320px, 48vw, 480px);
   display: flex;
   color: #fff;
-  background-color: var(--blue);
+  background-color: var(--mint-ink);
   background-size: cover;
   background-position: center;
 }
@@ -28,14 +28,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-top: 20px;
-  padding-bottom: clamp(60px, 7vw, 84px);
+  padding-top: 24px;
+  padding-bottom: var(--sp-hero-pb);
 }
 
 .country-lang {
   align-self: flex-end;
   display: inline-flex;
-  padding: 4px;
+  padding: 8px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(8px);
@@ -43,7 +43,7 @@
 }
 
 .country-lang-link {
-  padding: 6px 16px;
+  padding: 8px 16px;
   border-radius: 999px;
   color: #fff;
   font-size: 14px;
@@ -57,7 +57,7 @@
 }
 
 .country-eyebrow {
-  color: #ffd9b0;
+  color: var(--mint);
 }
 
 .country-title {
@@ -74,7 +74,7 @@
 
 /* ---------- 本文 ---------- */
 .country-body {
-  margin-top: -28px;
+  margin-top: -32px;
   position: relative;
 }
 
@@ -82,8 +82,8 @@
   display: flex;
   gap: 8px;
   overflow-x: auto;
-  padding: 10px;
-  margin-bottom: 28px;
+  padding: 8px;
+  margin-bottom: 32px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -97,7 +97,7 @@
 
 .country-toc a {
   flex-shrink: 0;
-  padding: 6px 14px;
+  padding: 8px 16px;
   border-radius: 999px;
   color: var(--ink-soft);
   font-size: 14px;
@@ -107,8 +107,8 @@
 }
 
 .country-toc a:hover {
-  background: var(--sky-soft);
-  color: var(--blue-deep);
+  background: var(--mint-soft);
+  color: var(--mint-ink-deep);
 }
 
 .country-about,
@@ -125,9 +125,9 @@
 .country-card-title {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   font-size: 20px;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .country-icon {
@@ -137,7 +137,7 @@
   height: 44px;
   flex-shrink: 0;
   border-radius: 14px;
-  background: var(--sky-soft);
+  background: var(--mint-soft);
   font-size: 22px;
 }
 
@@ -149,24 +149,24 @@
 }
 
 .country-text p + p {
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 /* ---------- 情報カード ---------- */
 .country-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 24px;
   margin-bottom: 24px;
 }
 
 .country-card {
-  padding: clamp(22px, 3vw, 32px);
+  padding: var(--sp-card-sm);
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
-  border-top: 4px solid var(--sky);
+  border-top: 4px solid var(--mint);
 }
 
 .country-card.is-wide {
@@ -174,11 +174,11 @@
 }
 
 .country-card-orange {
-  border-top-color: var(--orange);
+  border-top-color: var(--pink);
 }
 
 .country-card-orange .country-icon {
-  background: var(--orange-soft);
+  background: var(--pink-soft);
 }
 
 .country-card-warn {
@@ -201,13 +201,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 24px;
   flex-wrap: wrap;
-  background: linear-gradient(135deg, var(--sky-soft), var(--surface));
+  background: linear-gradient(135deg, var(--mint-soft), var(--surface));
 }
 
 .country-link .country-section-title {
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
 .country-link-text {
@@ -221,5 +221,5 @@
 }
 
 .country-posts .section-title {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }

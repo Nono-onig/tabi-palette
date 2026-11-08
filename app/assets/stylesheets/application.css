@@ -10,27 +10,38 @@
    1. デザイントークン
    ========================================================= */
 :root {
-  /* ベース */
-  --bg: #fbf8f3;            /* オフホワイト */
-  --bg-warm: #f5efe5;
+  /* ベース（クリーム） */
+  --bg: #fff8e8;
+  --bg-warm: #fcefd2;
   --surface: #ffffff;
-  --line: #e9e2d6;
-  --line-strong: #d8cfc0;
+  --line: #efe2c4;
+  --line-strong: #dccba4;
+  --border: #222222;        /* ボタンなどの黒い細縁 */
 
   /* 文字 */
-  --ink: #22303d;
-  --ink-soft: #56636f;
-  --ink-mute: #7d8790;
+  --ink: #2b2b2b;
+  --ink-soft: #5b544b;
+  --ink-mute: #857c70;
 
-  /* アクセント */
-  --sky: #8ec5e8;
-  --sky-soft: #e6f2fa;
-  --blue: #3f6a92;          /* くすんだブルー（白文字とのコントラスト確保） */
-  --blue-deep: #2f5576;
-  --orange: #f2a65a;
-  --orange-soft: #fdeedd;
-  --orange-ink: #a85612;    /* オレンジ系の文字色（読みやすさ用） */
-  --danger: #c0473b;
+  /* アクセント（元の tabi✈︎palette のペパーミントグリーン × ピンク） */
+  --mint: #a1f7dc;
+  --mint-soft: #e4fcf4;
+  --mint-ink: #1d7a62;      /* ミント系の文字色（クリーム地でコントラスト 4.5 以上） */
+  --mint-ink-deep: #145a48;
+  --pink: #f1846e;
+  --pink-soft: #fde6e0;
+  --pink-ink: #b4432b;      /* ピンク系の文字色（読みやすさ用） */
+  --danger: #c0392b;
+
+  /* 余白（8の倍数）：PC → スマホで切り替え */
+  --sp-card-sm: 32px;
+  --sp-card: 40px;
+  --sp-card-lg: 48px;
+  --sp-gap-lg: 48px;
+  --sp-gap-xl: 64px;
+  --sp-hero-t: 88px;
+  --sp-hero-b: 96px;
+  --sp-hero-pb: 80px;
 
   /* 7つのPaletteカラー */
   --c-culture: #e07a6b;
@@ -45,16 +56,30 @@
   --radius-sm: 10px;
   --radius: 18px;
   --radius-lg: 28px;
-  --shadow-sm: 0 1px 2px rgba(34, 48, 61, 0.06), 0 2px 8px rgba(34, 48, 61, 0.05);
-  --shadow: 0 2px 6px rgba(34, 48, 61, 0.05), 0 12px 32px rgba(34, 48, 61, 0.08);
-  --shadow-lg: 0 24px 60px rgba(34, 48, 61, 0.14);
+  --shadow-sm: 0 1px 2px rgba(43, 43, 43, 0.05), 0 2px 8px rgba(43, 43, 43, 0.04);
+  --shadow: 0 2px 6px rgba(43, 43, 43, 0.05), 0 12px 32px rgba(43, 43, 43, 0.07);
+  --shadow-lg: 0 24px 60px rgba(43, 43, 43, 0.12);
 
   /* タイポグラフィ */
   --font-body: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif;
   --font-logo: "Fredoka", "Zen Maru Gothic", sans-serif;
 
   --container: 1120px;
-  --gutter: 20px;
+  --gutter: 24px;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --sp-card-sm: 24px;
+    --sp-card: 24px;
+    --sp-card-lg: 24px;
+    --sp-gap-lg: 24px;
+    --sp-gap-xl: 32px;
+    --sp-hero-t: 40px;
+    --sp-hero-b: 56px;
+    --sp-hero-pb: 56px;
+    --gutter: 16px;
+  }
 }
 
 /* =========================================================
@@ -96,7 +121,7 @@ img {
 }
 
 a {
-  color: var(--blue);
+  color: var(--mint-ink);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
@@ -116,12 +141,12 @@ textarea {
 }
 
 :focus-visible {
-  outline: 3px solid var(--sky);
+  outline: 3px solid var(--mint);
   outline-offset: 2px;
 }
 
 ::selection {
-  background: var(--orange-soft);
+  background: var(--pink-soft);
 }
 
 [hidden] {
@@ -180,7 +205,7 @@ textarea {
   font-size: 13px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--orange-ink);
+  color: var(--pink-ink);
   margin-bottom: 8px;
 }
 
@@ -189,7 +214,7 @@ textarea {
 }
 
 .page-lead {
-  margin-top: 10px;
+  margin-top: 8px;
   color: var(--ink-soft);
 }
 
@@ -199,7 +224,7 @@ textarea {
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
 }
 
 .section-title {
@@ -208,7 +233,7 @@ textarea {
 
 .section-lead {
   color: var(--ink-soft);
-  margin-top: 4px;
+  margin-top: 8px;
 }
 
 /* =========================================================
@@ -218,10 +243,10 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(251, 248, 243, 0.88);
+  background: rgba(255, 248, 232, 0.92);
   backdrop-filter: saturate(160%) blur(12px);
   -webkit-backdrop-filter: saturate(160%) blur(12px);
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1.5px solid var(--border);
 }
 
 .site-header-inner {
@@ -229,7 +254,7 @@ textarea {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  min-height: 68px;
+  min-height: 72px;
 }
 
 .logo {
@@ -243,7 +268,7 @@ textarea {
 }
 
 .logo-mark {
-  color: var(--orange);
+  color: var(--pink);
   display: inline-block;
   transition: transform 0.4s ease;
 }
@@ -255,11 +280,11 @@ textarea {
 .site-nav {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
 }
 
 .site-nav-link {
-  padding: 8px 14px;
+  padding: 8px 16px;
   border-radius: 999px;
   color: var(--ink-soft);
   text-decoration: none;
@@ -270,8 +295,8 @@ textarea {
 }
 
 .site-nav-link:hover {
-  background: var(--sky-soft);
-  color: var(--blue-deep);
+  background: var(--mint);
+  color: var(--mint-ink-deep);
 }
 
 .site-actions {
@@ -288,14 +313,14 @@ textarea {
 @media (max-width: 860px) {
   .site-header-inner {
     flex-wrap: wrap;
-    padding-top: 10px;
+    padding-top: 8px;
   }
 
   .site-nav {
     order: 3;
     width: calc(100% + 2 * var(--gutter));
     margin: 0 calc(-1 * var(--gutter));
-    padding: 4px var(--gutter) 10px;
+    padding: 8px var(--gutter) 8px;
     overflow-x: auto;
     scrollbar-width: none;
   }
@@ -319,17 +344,17 @@ textarea {
   }
 
   .site-actions {
-    gap: 4px;
+    gap: 8px;
   }
 
   .site-actions .btn-sm {
-    min-height: 34px;
-    padding: 5px 12px;
+    min-height: 40px;
+    padding: 8px 16px;
     font-size: 13px;
   }
 
   .site-nav-link {
-    padding: 6px 12px;
+    padding: 8px 16px;
     font-size: 14px;
   }
 }
@@ -339,9 +364,10 @@ textarea {
    ========================================================= */
 .site-footer {
   margin-top: auto;
-  background: var(--ink);
-  color: #d9dfe5;
-  padding: 48px 0 28px;
+  background: var(--mint);
+  color: var(--ink);
+  border-top: 1.5px solid var(--border);
+  padding: 48px 0 32px;
 }
 
 .site-footer-inner {
@@ -352,14 +378,10 @@ textarea {
   flex-wrap: wrap;
 }
 
-.site-footer .logo {
-  color: #fff;
-}
-
 .footer-tagline {
-  margin-top: 6px;
+  margin-top: 8px;
   font-size: 14px;
-  color: #aab4bd;
+  color: var(--ink-soft);
 }
 
 .footer-links {
@@ -370,22 +392,22 @@ textarea {
 }
 
 .footer-links a {
-  color: #d9dfe5;
+  color: var(--ink);
   text-decoration: none;
   font-size: 14px;
+  font-weight: 500;
 }
 
 .footer-links a:hover {
-  color: #fff;
   text-decoration: underline;
 }
 
 .footer-copy {
   margin-top: 32px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 24px;
+  border-top: 1px solid rgba(34, 34, 34, 0.2);
   font-size: 12px;
-  color: #93a0ab;
+  color: var(--ink-soft);
 }
 
 /* =========================================================
@@ -396,25 +418,31 @@ textarea {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 44px;
-  padding: 10px 22px;
-  border: 1.5px solid transparent;
+  min-height: 48px;
+  padding: 8px 24px;
+  border: 1.5px solid var(--border);
   border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 3px 0 var(--border);
   font-weight: 700;
   font-size: 15px;
   line-height: 1.3;
   text-decoration: none;
   cursor: pointer;
   white-space: nowrap;
-  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease, color 0.2s ease;
 }
 
+/* ふわっと浮いて、押すと沈む */
 .btn:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 var(--border);
 }
 
 .btn:active {
-  transform: translateY(0);
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--border);
 }
 
 .btn:disabled,
@@ -422,69 +450,59 @@ textarea {
   opacity: 0.45;
   cursor: not-allowed;
   transform: none;
-  box-shadow: none;
+  box-shadow: 0 3px 0 var(--border);
 }
 
 .btn-primary {
-  background: var(--blue);
-  color: #fff;
-  box-shadow: 0 6px 16px rgba(63, 106, 146, 0.28);
+  background: var(--mint);
 }
 
 .btn-primary:hover {
-  background: var(--blue-deep);
+  background: #8ff2d2;
 }
 
 .btn-accent {
-  background: var(--orange);
-  color: var(--ink);
-  box-shadow: 0 6px 16px rgba(242, 166, 90, 0.35);
+  background: var(--pink);
 }
 
 .btn-accent:hover {
-  background: #ee9640;
-}
-
-.btn-outline {
-  background: var(--surface);
-  color: var(--ink);
-  border-color: var(--line-strong);
+  background: #f3937f;
 }
 
 .btn-outline:hover {
-  border-color: var(--blue);
-  color: var(--blue-deep);
+  background: var(--mint-soft);
 }
 
 .btn-ghost {
-  background: transparent;
-  color: var(--ink-soft);
+  background: var(--bg);
 }
 
 .btn-ghost:hover {
-  background: var(--sky-soft);
-  color: var(--blue-deep);
+  background: var(--pink-soft);
 }
 
 .btn-danger {
-  background: var(--surface);
   color: var(--danger);
-  border-color: #efc9c4;
 }
 
 .btn-danger:hover {
-  background: #fdf0ee;
+  background: #fdecea;
 }
 
 .btn-sm {
-  min-height: 36px;
-  padding: 6px 16px;
+  min-height: 40px;
+  padding: 8px 16px;
   font-size: 14px;
+  box-shadow: 0 2px 0 var(--border);
+}
+
+.btn-sm:hover {
+  box-shadow: 0 4px 0 var(--border);
 }
 
 .btn-lg {
   min-height: 56px;
-  padding: 14px 32px;
+  padding: 16px 32px;
   font-size: 17px;
 }
 
@@ -494,7 +512,7 @@ textarea {
 
 .btn-row {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   flex-wrap: wrap;
   align-items: center;
 }
@@ -504,7 +522,7 @@ textarea {
 }
 
 .text-link {
-  color: var(--blue);
+  color: var(--mint-ink);
   font-weight: 700;
   text-decoration: none;
 }
@@ -524,7 +542,7 @@ textarea {
 }
 
 .card-pad {
-  padding: clamp(22px, 4vw, 40px);
+  padding: var(--sp-card);
 }
 
 /* 投稿カード（トップ・一覧・マイページで共通） */
@@ -554,7 +572,7 @@ textarea {
 .post-card-media {
   position: relative;
   aspect-ratio: 4 / 3;
-  background: linear-gradient(135deg, var(--sky-soft), var(--orange-soft));
+  background: linear-gradient(135deg, var(--mint-soft), var(--pink-soft));
   overflow: hidden;
 }
 
@@ -575,27 +593,27 @@ textarea {
   height: 100%;
   font-family: var(--font-logo);
   font-size: 40px;
-  color: rgba(63, 106, 146, 0.45);
+  color: rgba(29, 122, 98, 0.45);
 }
 
 .post-card-region {
   position: absolute;
   top: 12px;
   left: 12px;
-  padding: 3px 12px;
+  padding: 0 16px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.92);
   font-size: 12px;
   font-weight: 700;
-  color: var(--blue-deep);
+  color: var(--mint-ink-deep);
 }
 
 .post-card-body {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   flex: 1;
-  padding: 18px 20px 20px;
+  padding: 16px 24px 24px;
 }
 
 .post-card-title {
@@ -640,16 +658,16 @@ textarea {
 .tag-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
 }
 
 .tag {
   display: inline-flex;
   align-items: center;
-  padding: 3px 12px;
+  padding: 0 16px;
   border-radius: 999px;
-  background: var(--sky-soft);
-  color: var(--blue-deep);
+  background: var(--mint-soft);
+  color: var(--mint-ink-deep);
   font-size: 13px;
   font-weight: 500;
   line-height: 1.6;
@@ -659,7 +677,7 @@ textarea {
 .chip-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
 .chip {
@@ -667,8 +685,8 @@ textarea {
   display: inline-flex;
   align-items: center;
   min-height: 40px;
-  padding: 6px 16px;
-  border: 1.5px solid var(--line-strong);
+  padding: 8px 16px;
+  border: 1.5px solid var(--border);
   border-radius: 999px;
   background: var(--surface);
   color: var(--ink);
@@ -686,17 +704,18 @@ textarea {
 }
 
 .chip:hover {
-  border-color: var(--blue);
+  background: var(--pink-soft);
 }
 
 .chip:has(input:checked) {
-  background: var(--blue);
-  border-color: var(--blue);
-  color: #fff;
+  background: var(--pink);
+  color: var(--ink);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 0 var(--border);
 }
 
 .chip:has(input:focus-visible) {
-  outline: 3px solid var(--sky);
+  outline: 3px solid var(--mint);
   outline-offset: 2px;
 }
 
@@ -705,13 +724,13 @@ textarea {
    ========================================================= */
 .form-stack {
   display: grid;
-  gap: 22px;
+  gap: 24px;
 }
 
 .form-grid-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 22px;
+  gap: 24px;
 }
 
 @media (max-width: 640px) {
@@ -734,15 +753,15 @@ textarea {
 .field-hint {
   font-size: 13px;
   color: var(--ink-mute);
-  margin-top: -4px;
+  margin-top: -8px;
 }
 
 .input,
 .textarea,
 .select {
   width: 100%;
-  min-height: 50px;
-  padding: 12px 16px;
+  min-height: 48px;
+  padding: 16px 16px;
   border: 1.5px solid var(--line-strong);
   border-radius: var(--radius-sm);
   background: var(--surface);
@@ -767,7 +786,7 @@ textarea {
   background-position: calc(100% - 22px) 52%, calc(100% - 16px) 52%;
   background-size: 6px 6px;
   background-repeat: no-repeat;
-  padding-right: 44px;
+  padding-right: 48px;
 }
 
 .input::placeholder,
@@ -779,14 +798,14 @@ textarea {
 .textarea:focus,
 .select:focus {
   outline: none;
-  border-color: var(--blue);
-  box-shadow: 0 0 0 4px rgba(142, 197, 232, 0.35);
+  border-color: var(--mint-ink);
+  box-shadow: 0 0 0 4px rgba(161, 247, 220, 0.35);
 }
 
 .checkbox-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   font-size: 15px;
   cursor: pointer;
 }
@@ -794,13 +813,13 @@ textarea {
 .checkbox-row input {
   width: 18px;
   height: 18px;
-  accent-color: var(--blue);
+  accent-color: var(--mint-ink);
 }
 
 .file-drop {
   display: grid;
-  gap: 10px;
-  padding: 22px;
+  gap: 8px;
+  padding: 24px;
   border: 1.5px dashed var(--line-strong);
   border-radius: var(--radius);
   background: var(--bg);
@@ -816,7 +835,7 @@ textarea {
 }
 
 .file-drop input[type="file"]::file-selector-button {
-  margin-right: 12px;
+  margin-right: 16px;
   padding: 8px 16px;
   border: 1.5px solid var(--line-strong);
   border-radius: 999px;
@@ -828,7 +847,7 @@ textarea {
 /* Deviseのエラーメッセージ */
 #error_explanation,
 .form-errors {
-  padding: 16px 20px;
+  padding: 16px 24px;
   border-radius: var(--radius-sm);
   background: #fdf0ee;
   border: 1px solid #efc9c4;
@@ -838,7 +857,7 @@ textarea {
 
 #error_explanation h2 {
   font-size: 15px;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 #error_explanation ul {
@@ -855,8 +874,8 @@ textarea {
 .flash {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 18px;
+  gap: 8px;
+  padding: 16px 16px;
   border-radius: var(--radius-sm);
   font-size: 14px;
   font-weight: 500;
@@ -868,9 +887,9 @@ textarea {
 }
 
 .flash-notice {
-  background: var(--sky-soft);
-  color: var(--blue-deep);
-  border: 1px solid #c6e0f1;
+  background: var(--mint-soft);
+  color: var(--mint-ink-deep);
+  border: 1px solid #b5eed9;
 }
 
 .flash-alert {
@@ -899,12 +918,12 @@ textarea {
 .empty-state-icon {
   font-family: var(--font-logo);
   font-size: 36px;
-  color: var(--sky);
+  color: var(--mint);
   margin-bottom: 8px;
 }
 
 .empty-state .btn {
-  margin-top: 18px;
+  margin-top: 16px;
 }
 
 .back-area {

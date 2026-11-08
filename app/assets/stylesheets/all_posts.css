@@ -8,7 +8,7 @@
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
 }
 
 .all-posts-search {
@@ -18,7 +18,7 @@
   flex: 1;
   max-width: 480px;
   min-width: 260px;
-  padding: 4px 4px 4px 16px;
+  padding: 8px 8px 8px 16px;
   background: var(--surface);
   border: 1.5px solid var(--line-strong);
   border-radius: 999px;
@@ -26,8 +26,8 @@
 }
 
 .all-posts-search:focus-within {
-  border-color: var(--blue);
-  box-shadow: 0 0 0 4px rgba(142, 197, 232, 0.35);
+  border-color: var(--mint-ink);
+  box-shadow: 0 0 0 4px rgba(161, 247, 220, 0.35);
 }
 
 .all-posts-search .search-input {

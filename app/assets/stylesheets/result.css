@@ -3,8 +3,8 @@
    ========================================================= */
 .result-page {
   background:
-    radial-gradient(ellipse 50% 35% at 0% 0%, rgba(242, 166, 90, 0.16), transparent 70%),
-    radial-gradient(ellipse 50% 35% at 100% 30%, rgba(142, 197, 232, 0.25), transparent 70%);
+    radial-gradient(ellipse 50% 35% at 0% 0%, rgba(241, 132, 110, 0.16), transparent 70%),
+    radial-gradient(ellipse 50% 35% at 100% 30%, rgba(161, 247, 220, 0.25), transparent 70%);
 }
 
 .result-page > .container {
@@ -14,12 +14,12 @@
 .result-kicker {
   font-size: 14px;
   color: var(--ink-soft);
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
 .result-block-title {
   font-size: 18px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 /* ---------- 旅タイプ ---------- */
@@ -27,8 +27,8 @@
   display: grid;
   grid-template-columns: 260px 1fr;
   align-items: center;
-  gap: clamp(24px, 5vw, 56px);
-  padding: clamp(24px, 5vw, 48px);
+  gap: var(--sp-gap-lg);
+  padding: var(--sp-card-lg);
   margin-bottom: 24px;
 }
 
@@ -75,15 +75,15 @@
 
 .result-type-name {
   font-size: clamp(26px, 4vw, 36px);
-  margin-bottom: 14px;
-  background: linear-gradient(transparent 65%, rgba(242, 166, 90, 0.4) 65%);
+  margin-bottom: 16px;
+  background: linear-gradient(transparent 65%, rgba(241, 132, 110, 0.4) 65%);
   display: inline;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
 
 .result-type-desc {
-  margin-top: 18px;
+  margin-top: 16px;
   color: var(--ink-soft);
   line-height: 2;
 }
@@ -110,7 +110,7 @@
 
 .palette-bars {
   display: grid;
-  gap: 14px;
+  gap: 16px;
   list-style: none;
 }
 
@@ -178,7 +178,7 @@
 @media (max-width: 560px) {
   .palette-bar {
     grid-template-columns: 1fr 44px;
-    gap: 6px 12px;
+    gap: 8px 16px;
   }
 
   .palette-bar-label {
@@ -201,7 +201,7 @@
 .result-country-media {
   position: relative;
   min-height: 320px;
-  background: linear-gradient(135deg, var(--sky), var(--blue));
+  background: linear-gradient(135deg, var(--mint), var(--mint-ink));
 }
 
 .result-country-media img {
@@ -216,21 +216,21 @@
   position: absolute;
   left: 18px;
   top: 18px;
-  padding: 6px 14px;
+  padding: 8px 16px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.92);
   font-family: var(--font-logo);
   font-weight: 600;
   font-size: 13px;
   letter-spacing: 0.06em;
-  color: var(--blue-deep);
+  color: var(--mint-ink-deep);
 }
 
 .result-country-body {
-  padding: clamp(24px, 4vw, 44px);
+  padding: var(--sp-card);
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
 .result-country-name {
@@ -243,12 +243,12 @@
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--orange-ink);
+  color: var(--pink-ink);
   font-size: 14px;
 }
 
 .result-country-desc {
-  margin-top: 14px;
+  margin-top: 16px;
   color: var(--ink-soft);
   font-size: 15px;
 }
@@ -258,11 +258,11 @@
   flex-wrap: wrap;
   gap: 8px;
   list-style: none;
-  margin: 18px 0 24px;
+  margin: 16px 0 24px;
 }
 
 .result-country-points li {
-  padding: 4px 12px;
+  padding: 8px 16px;
   border-radius: 999px;
   background: var(--bg);
   border: 1px solid var(--line);

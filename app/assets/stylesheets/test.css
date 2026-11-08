@@ -5,12 +5,12 @@
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(ellipse 50% 40% at 100% 0%, rgba(142, 197, 232, 0.28), transparent 70%),
-    radial-gradient(ellipse 40% 40% at 0% 100%, rgba(242, 166, 90, 0.16), transparent 70%);
+    radial-gradient(ellipse 50% 40% at 100% 0%, rgba(161, 247, 220, 0.28), transparent 70%),
+    radial-gradient(ellipse 40% 40% at 0% 100%, rgba(241, 132, 110, 0.16), transparent 70%);
 }
 
 .quiz-head {
-  margin-bottom: 28px;
+  margin-bottom: 32px;
 }
 
 .quiz {
@@ -22,7 +22,7 @@
 /* ---------- 進捗 ---------- */
 .quiz-progress {
   display: none;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .quiz.is-enhanced .quiz-progress {
@@ -40,13 +40,14 @@
 .quiz-progress-meta strong {
   font-family: var(--font-logo);
   font-size: 20px;
-  color: var(--blue);
+  color: var(--mint-ink);
 }
 
 .quiz-progress-track {
-  height: 8px;
+  height: 16px;
   border-radius: 999px;
-  background: var(--line);
+  border: 1.5px solid var(--border);
+  background: var(--surface);
   overflow: hidden;
 }
 
@@ -54,7 +55,7 @@
   width: 0;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, var(--sky), var(--blue));
+  background: linear-gradient(90deg, var(--mint), var(--pink));
   transition: width 0.4s ease;
 }
 
@@ -62,8 +63,8 @@
   display: flex;
   justify-content: space-between;
   list-style: none;
-  margin-top: 12px;
-  padding: 0 2px;
+  margin-top: 16px;
+  padding: 0 0;
 }
 
 .quiz-dots li {
@@ -85,14 +86,14 @@
 
 .quiz-dots li.is-current {
   transform: scale(1.4);
-  box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--blue);
+  box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--mint-ink);
 }
 
 /* ---------- 質問カード ---------- */
 .quiz-step {
   border: 1px solid var(--line);
-  padding: clamp(22px, 4vw, 36px);
-  margin-bottom: 20px;
+  padding: var(--sp-card);
+  margin-bottom: 24px;
 }
 
 .quiz.is-enhanced .quiz-step {
@@ -113,9 +114,9 @@
 .quiz-question {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
+  gap: 16px;
   width: 100%;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
   float: left; /* legend をブロックとして扱う */
 }
 
@@ -130,8 +131,8 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: var(--orange-soft);
-  color: var(--orange-ink);
+  background: var(--pink-soft);
+  color: var(--pink-ink);
   font-family: var(--font-logo);
   font-weight: 700;
   font-size: 18px;
@@ -150,26 +151,25 @@
 
 .quiz-choices {
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
 .quiz-choice {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   min-height: 56px;
-  padding: 12px 18px;
-  border: 1.5px solid var(--line);
+  padding: 16px 24px;
+  border: 1.5px solid var(--border);
   border-radius: var(--radius);
-  background: var(--bg);
+  background: var(--surface);
   cursor: pointer;
   transition: border-color 0.2s, background 0.2s, transform 0.15s;
 }
 
 .quiz-choice:hover {
-  border-color: var(--sky);
-  background: var(--sky-soft);
+  background: var(--mint-soft);
 }
 
 .quiz-choice input {
@@ -180,10 +180,10 @@
 
 .quiz-choice-mark {
   flex-shrink: 0;
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  border: 2px solid var(--line-strong);
+  border: 1.5px solid var(--border);
   background: var(--surface);
   transition: border-color 0.2s, box-shadow 0.2s;
 }
@@ -194,19 +194,18 @@
 }
 
 .quiz-choice:has(input:checked) {
-  border-color: var(--blue);
-  background: var(--sky-soft);
-  transform: scale(1.01);
+  background: var(--mint);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 0 var(--border);
 }
 
 .quiz-choice:has(input:checked) .quiz-choice-mark {
-  border-color: var(--blue);
-  box-shadow: inset 0 0 0 5px var(--surface);
-  background: var(--blue);
+  box-shadow: inset 0 0 0 4px var(--surface);
+  background: var(--pink);
 }
 
 .quiz-choice:has(input:focus-visible) {
-  outline: 3px solid var(--sky);
+  outline: 3px solid var(--mint);
   outline-offset: 2px;
 }
 
@@ -215,7 +214,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   margin-top: 24px;
 }
 
@@ -233,7 +232,7 @@
 }
 
 .quiz-note {
-  margin-top: 12px;
+  margin-top: 16px;
   text-align: right;
   font-size: 14px;
   color: var(--danger);
