@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy ]
+  before_action :set_owned_tweet, only: [ :edit, :update ]
 
 
   # トップページ
@@ -30,6 +31,11 @@ class TweetsController < ApplicationController
                        .where(tags: { id: params[:tag_ids] })
                        .distinct
     end
+
+    @tweets = @tweets.with_attached_image.preload(:tags).order(created_at: :desc)
+
+    # 旅の準備ガイドがある国（トップページの一覧用）
+    @countries = Country.order(:id)
   end
 
 
@@ -37,7 +43,7 @@ class TweetsController < ApplicationController
   # みんなの投稿一覧
   # =========================
   def all_posts
-    @tweets = Tweet.all.order(created_at: :desc)
+    @tweets = Tweet.with_attached_image.preload(:tags).order(created_at: :desc)
   end
 
 
@@ -77,7 +83,6 @@ class TweetsController < ApplicationController
   # 投稿編集
   # =========================
   def edit
-    @tweet = Tweet.find(params[:id])
   end
 
 
@@ -85,8 +90,6 @@ class TweetsController < ApplicationController
   # 投稿更新
   # =========================
   def update
-    @tweet = Tweet.find(params[:id])
-
     # 写真を削除する場合
     if params[:remove_image] == "1"
       @tweet.image.purge
@@ -95,7 +98,7 @@ class TweetsController < ApplicationController
     if @tweet.update(tweet_params)
       redirect_to tweet_path(@tweet)
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -129,6 +132,12 @@ class TweetsController < ApplicationController
 
 
   private
+
+  # 自分の投稿のみ編集できるようにする
+  def set_owned_tweet
+    @tweet = Tweet.find(params[:id])
+    redirect_to tweet_path(@tweet), alert: "自分の投稿のみ編集できます" unless @tweet.user == current_user
+  end
 
 
   def tweet_params

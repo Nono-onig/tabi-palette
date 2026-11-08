@@ -1,0 +1,36 @@
+<%# 投稿カード（トップ・みんなの投稿・マイページ共通） %>
+<article class="post-card">
+  <div class="post-card-media">
+    <% if tweet.image.attached? %>
+      <%= image_tag tweet.image, alt: tweet.picture.presence || "#{tweet.place}の写真", loading: "lazy" %>
+    <% else %>
+      <div class="post-card-noimage" aria-hidden="true">✈︎</div>
+    <% end %>
+
+    <% if tweet.region.present? %>
+      <span class="post-card-region"><%= tweet.region %></span>
+    <% end %>
+  </div>
+
+  <div class="post-card-body">
+    <h3 class="post-card-title">
+      <%= link_to tweet.place.presence || "旅の思い出", tweet_path(tweet) %>
+    </h3>
+
+    <% if tweet.location.present? %>
+      <p class="post-card-location">📍 <%= tweet.location %></p>
+    <% end %>
+
+    <% if tweet.comment.present? %>
+      <p class="post-card-comment"><%= tweet.comment %></p>
+    <% end %>
+
+    <% if tweet.tags.any? %>
+      <div class="tag-list">
+        <% tweet.tags.first(3).each do |tag| %>
+          <span class="tag"><%= tag.name %></span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</article>

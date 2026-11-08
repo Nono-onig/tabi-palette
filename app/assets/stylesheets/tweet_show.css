@@ -1,327 +1,143 @@
-/* 投稿詳細ページ */
+/* =========================================================
+   投稿詳細（tweets/show）
+   ========================================================= */
+.tweet-show-container {
+  max-width: 1040px;
+}
 
-.tweet-show-page {
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink-mute);
+  margin-bottom: 24px;
+}
+
+.breadcrumb a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.tweet-show {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: var(--sp-gap-lg);
+  align-items: start;
+  margin-bottom: 32px;
+}
+
+.tweet-show-media {
+  position: sticky;
+  top: 90px;
+}
+
+.tweet-show-media img,
+.tweet-show-noimage {
   width: 100%;
-  min-height: 100vh;
-
-  padding: 65px 20px 100px;
-
-  box-sizing: border-box;
-
-  background-color: #fff8e9;
-
-  font-family: "Zen Maru Gothic", sans-serif;
-
-  color: #111;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  background: var(--mint-soft);
 }
 
-/* タイトル */
+.tweet-show-noimage {
+  display: grid;
+  place-items: center;
+  font-family: var(--font-logo);
+  font-size: 64px;
+  color: rgba(29, 122, 98, 0.4);
+  background: linear-gradient(135deg, var(--mint-soft), var(--pink-soft));
+}
 
-.tweet-show-heading {
+.tweet-show-media figcaption {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--ink-soft);
   text-align: center;
-  margin-bottom: 40px;
 }
 
-.tweet-show-mini-title {
-  margin-bottom: 5px;
-  font-family: "Fredoka", sans-serif;
-  font-size: 23px;
-  font-weight: 700;
-  letter-spacing: 2px;
-}
-
-.tweet-show-heading h1 {
-  margin-bottom: 8px;
-  font-family: "M PLUS Rounded 1c", sans-serif;
-  font-size: 48px;
-  font-weight: 800;
+.tweet-show-title {
+  font-size: clamp(28px, 4vw, 40px);
 }
 
 .tweet-show-location {
-  font-size: 17px;
-  font-weight: 700;
-}
-
-/* メインカード */
-
-.tweet-show-card {
-  width: 90%;
-  max-width: 850px;
-
-  margin: 0 auto;
-
-  padding: 35px;
-
-  box-sizing: border-box;
-
-  background-color: white;
-
-  border: 3px solid #111;
-  border-radius: 35px;
-
-  box-shadow: 10px 10px 0 #A1F7DC;
-}
-
-/* 投稿した写真 */
-
-.tweet-show-image-area {
-  width: 100%;
-  overflow: hidden;
-  border: 3px solid #111;
-  border-radius: 25px;
-  box-sizing: border-box;
-}
-
-.tweet-show-image {
-  width: 100%;
-  max-height: 520px;
-  object-fit: cover;
-  display: block;
-}
-
-/* 写真説明 */
-
-.tweet-picture-caption {
-  margin-top: 12px;
-  text-align: center;
-  font-size: 14px;
-  color: #666;
-}
-
-/* 基本情報*/
-
-.tweet-show-info {
-  display: grid;
-
-  grid-template-columns: repeat(2, 1fr);
-
-  gap: 15px;
-
-  margin-top: 35px;
-}
-
-.tweet-show-item {
-  padding: 18px 20px;
-
-  background-color: #fffaf1;
-
-  border: 2px solid #111;
-  border-radius: 20px;
-}
-
-.tweet-show-label {
-  margin-bottom: 6px;
-  font-family: "M PLUS Rounded 1c", sans-serif;
-  font-size: 14px;
-  font-weight: 800;
-  color: #666;
-}
-
-.tweet-show-value {
-  font-size: 17px;
-  font-weight: 700;
-  line-height: 1.6;
-}
-
-/* コメント・おすすめ */
-
-.tweet-show-text-card {
-  margin-top: 30px;
-  padding: 25px 28px;
-  background-color: #fffaf1;
-  border: 2px solid #111;
-  border-radius: 25px;
-}
-
-.recommendation-card {
-  background-color: #effff9;
-}
-
-.tweet-show-text-title {
-  margin-bottom: 12px;
-  font-family: "M PLUS Rounded 1c", sans-serif;
-  font-size: 19px;
-  font-weight: 800;
-}
-
-.tweet-show-text {
+  color: var(--ink-soft);
   font-size: 16px;
-  line-height: 1.9;
+  margin-top: 8px;
+}
+
+.tweet-show-meta {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--ink-mute);
+}
+
+.tweet-show-facts {
+  display: grid;
+  gap: 0;
+  margin: 24px 0;
+  border-top: 1px solid var(--line);
+}
+
+.tweet-show-facts > div {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+}
+
+.tweet-show-facts dt {
+  color: var(--ink-soft);
+  font-weight: 700;
+}
+
+.tweet-show-facts dd {
+  overflow-wrap: anywhere;
+}
+
+.tweet-show-tags {
+  margin-bottom: 24px;
+}
+
+.tweet-owner-actions form {
+  display: inline;
+}
+
+.tweet-show-texts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.tweet-show-text h2 {
+  font-size: 18px;
+  margin-bottom: 16px;
 }
 
 .tweet-show-text p {
-  margin: 0;
+  color: var(--ink-soft);
+  line-height: 2;
+  overflow-wrap: anywhere;
 }
 
-/* タグ */
-
-.tweet-show-tags {
-  margin-top: 30px;
-
-  padding: 25px 28px;
-
-  border-top: 2px dashed #ccc;
+.tweet-show-reco {
+  background: linear-gradient(135deg, var(--pink-soft), var(--surface) 70%);
 }
 
-.tweet-show-tag-list {
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 10px;
-}
-
-.tweet-show-tag {
-  display: inline-block;
-
-  padding: 8px 15px;
-
-  background-color: #A1F7DC;
-
-  border: 2px solid #111;
-  border-radius: 25px;
-
-  font-size: 14px;
-  font-weight: 700;
-}
-
-/* 投稿者用 編集・削除*/
-
-.tweet-owner-actions {
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
-
-  gap: 15px;
-
-  margin-top: 40px;
-
-  padding-top: 30px;
-
-  border-top: 2px dashed #ddd;
-}
-
-
-/* 編集 */
-
-.tweet-edit-button {
-  display: inline-block;
-
-  padding: 11px 22px;
-
-  border: 2px solid #111;
-  border-radius: 30px;
-
-  background-color: #f1846e;
-
-  color: white;
-
-  font-family: "M PLUS Rounded 1c", sans-serif;
-
-  font-weight: 800;
-
-  text-decoration: none;
-
-  transition: 0.2s;
-}
-
-.tweet-edit-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 3px 3px 0 #111;
-}
-
-/* 削除 */
-
-.tweet-delete-button {
-  padding: 11px 22px;
-
-  border: 2px solid #111;
-  border-radius: 30px;
-
-  background-color: white;
-
-  color: #111;
-
-  font-family: "M PLUS Rounded 1c", sans-serif;
-
-  font-weight: 800;
-
-  cursor: pointer;
-
-  transition: 0.2s;
-}
-
-.tweet-delete-button:hover {
-  background-color: #f7b8ad;
-  transform: translateY(-3px);
-  box-shadow: 3px 3px 0 #111;
-}
-
-/* 戻る*/
-
-.tweet-show-back {
-  margin-top: 55px;
-  text-align: center;
-}
-
-.tweet-show-back-button {
-  display: inline-block;
-
-  padding: 12px 25px;
-
-  border: 2px solid #111;
-  border-radius: 30px;
-
-  background-color: white;
-
-  color: #111;
-
-  font-family: "M PLUS Rounded 1c", sans-serif;
-
-  font-weight: 800;
-
-  text-decoration: none;
-
-  transition: 0.2s;
-}
-
-.tweet-show-back-button:hover {
-  background-color: #A1F7DC;
-
-  transform: translateY(-3px);
-
-  box-shadow: 3px 3px 0 #111;
-}
-
-/* スマホ版 */
-
-@media screen and (max-width: 650px) {
-
-  .tweet-show-page {
-    padding: 45px 12px 80px;
-  }
-
-  .tweet-show-heading h1 {
-    font-size: 35px;
-  }
-
-  .tweet-show-card {
-    width: 96%;
-
-    padding: 22px;
-  }
-
-  .tweet-show-info {
+@media (max-width: 760px) {
+  .tweet-show {
     grid-template-columns: 1fr;
   }
 
-  .tweet-show-image {
-    max-height: 350px;
+  .tweet-show-media {
+    position: static;
   }
-
-  .tweet-owner-actions {
-    flex-direction: column;
-  }
-
 }

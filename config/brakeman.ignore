@@ -1,0 +1,23 @@
+{
+  "ignored_warnings": [
+    {
+      "fingerprint": "3e84b560330bf7092fe7b513d4bc9452ec2e95c2e3273cf6db85fad8c54eb0a9",
+      "warning_type": "Cross-Site Scripting",
+      "file": "app/views/countries/show.html.erb",
+      "note": "Country#official_url only returns http/https URLs (javascript: etc. are rejected), and the data comes from db/seeds.rb, not user input."
+    },
+    {
+      "fingerprint": "d84924377155b41e094acae7404ec2e521629d86f97b0ff628e3d1b263f8101c",
+      "warning_type": "Unmaintained Dependency",
+      "file": "Gemfile.lock",
+      "note": "Rails 7.2 is end-of-life. Upgrading Rails is tracked as separate follow-up work, outside the UI redesign."
+    },
+    {
+      "fingerprint": "edf687f759ec9765bd5db185dbc615c80af77d6e7e19386fc42934e7a80307af",
+      "warning_type": "Unmaintained Dependency",
+      "file": ".ruby-version",
+      "note": "Ruby 3.2 is end-of-life. Upgrading Ruby is tracked as separate follow-up work, outside the UI redesign."
+    }
+  ],
+  "brakeman_version": "8.1.0"
+}

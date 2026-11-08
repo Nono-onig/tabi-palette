@@ -7,15 +7,15 @@ Rails.application.routes.draw do
   end
 end
 
-  resources :users, only: [:show]
+  resources :users, only: [ :show ]
 
-  resources :countries, only: [:show]
-  
+  resources :countries, only: [ :show ]
+
   get "/tweets/all", to: "tweets#all", as: "all_tweets"
 
   post "/tweets/add_tag", to: "tweets#add_tag"
-  
-  root 'tweets#index'
+
+  root "tweets#index"
 
   resources :tests
 end

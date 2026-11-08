@@ -1,19 +1,8 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  question1: MyString
-  question2: MyString
-  question3: MyString
-  question4: MyString
-  question5: MyString
-  question6: MyString
-  question7: MyString
-
-two:
-  question1: MyString
-  question2: MyString
-  question3: MyString
-  question4: MyString
-  question5: MyString
-  question6: MyString
-  question7: MyString
+  question1: culture
+  question2: culture
+  question3: culture,city
+  question4: culture,nature,relax
+  question5: culture,city
+  question6: culture
+  question7: culture,local

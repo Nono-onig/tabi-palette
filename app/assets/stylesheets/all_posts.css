@@ -1,233 +1,49 @@
-/* みんなの投稿一覧ページ*/
-
-.all-posts-page {
-  width: 100%;
-  min-height: 100vh;
-
-  padding: 60px 30px 100px;
-
-  box-sizing: border-box;
-
-  background-color: #fff8e9;
-
-  font-family: "Zen Maru Gothic", sans-serif;
-
-  color: #111;
+/* =========================================================
+   みんなの投稿（tweets/all_posts）
+   ※ 投稿カード自体のスタイルは application.css の .post-card
+   ========================================================= */
+.all-posts-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
 }
 
-
-/* タイトル*/
-
-.all-posts-heading {
-  text-align: center;
-  margin-bottom: 50px;
+.all-posts-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  max-width: 480px;
+  min-width: 260px;
+  padding: 8px 8px 8px 16px;
+  background: var(--surface);
+  border: 1.5px solid var(--line-strong);
+  border-radius: 999px;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.all-posts-mini-title {
-  font-family: "Fredoka", sans-serif;
-
-  font-size: 24px;
-  font-weight: 700;
-
-  letter-spacing: 2px;
-
-  margin-bottom: 5px;
+.all-posts-search:focus-within {
+  border-color: var(--mint-ink);
+  box-shadow: 0 0 0 4px rgba(161, 247, 220, 0.35);
 }
 
-.all-posts-heading h1 {
-  font-family: "M PLUS Rounded 1c", sans-serif;
-
-  font-size: 48px;
-  font-weight: 800;
-
-  margin: 0;
+.all-posts-search .search-input {
+  flex: 1;
+  min-width: 0;
+  min-height: 40px;
+  border: none;
+  background: transparent;
+  font-size: 15px;
 }
 
-/* 投稿一覧*/
-
-.all-posts-grid {
-  width: 95%;
-  max-width: 1100px;
-
-  margin: 0 auto;
-
-  display: grid;
-
-  /* 最大3列 */
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 35px 28px;
+.all-posts-search .search-input:focus {
+  outline: none;
 }
 
-/* 投稿カード*/
-
-.all-posts-page .post-card {
-  width: 100%;
-
-  box-sizing: border-box;
-
-  background-color: #fff;
-
-  border: 3px solid #111;
-
-  border-radius: 28px;
-
-  overflow: hidden;
-
-  box-shadow: 7px 7px 0 #A1F7DC;
-
-  transition: 0.25s;
-}
-
-
-/* カードにマウスを乗せた時 */
-.all-posts-page .post-card:hover {
-  transform: translateY(-7px) rotate(-1deg);
-
-  box-shadow: 10px 10px 0 #f7b8ad;
-}
-
-
-/* 投稿画像 */
-
-.all-posts-page .post-image {
-  width: 100%;
-  height: 230px;
-
-  object-fit: cover;
-
-  display: block;
-
-  border-bottom: 3px solid #111;
-}
-
-
-/*投稿情報*/
-
-.all-posts-page .post-info {
-  padding: 20px 20px 22px;
-}
-
-.all-posts-page .post-info h3 {
-  margin: 0 0 10px;
-
-  font-family: "M PLUS Rounded 1c", sans-serif;
-
-  font-size: 24px;
-  font-weight: 800;
-}
-
-.all-posts-page .post-info p {
-  margin-bottom: 10px;
-
-  line-height: 1.7;
-}
-
-.all-posts-page .post-comment {
+.all-posts-count {
   font-size: 14px;
-
-  color: #555;
-}
-
-/*くわしく見る*/
-
-.all-posts-page .post-detail-link {
-  display: inline-block;
-
-  margin-top: 10px;
-
-  padding: 8px 16px;
-
-  border: 2px solid #111;
-  border-radius: 25px;
-
-  background-color: #f1846e;
-
-  color: #fff;
-
-  text-decoration: none;
-
-  font-family: "M PLUS Rounded 1c", sans-serif;
-
-  font-size: 14px;
-  font-weight: 800;
-
-  transition: 0.2s;
-}
-
-.all-posts-page .post-detail-link:hover {
-  transform: translateY(-2px);
-
-  box-shadow: 3px 3px 0 #111;
-
-  text-decoration: none;
-}
-
-
-/* トップに戻る */
-
-.all-posts-back {
-  margin-top: 60px;
-
-  text-align: center;
-}
-
-.new-post-back-button {
-  display: inline-block;
-
-  padding: 12px 25px;
-
-  border: 2px solid #111;
-  border-radius: 30px;
-
-  background-color: #fff;
-
-  color: #111;
-
-  font-family: "M PLUS Rounded 1c", sans-serif;
-
-  font-weight: 800;
-
-  text-decoration: none;
-
-  transition: 0.2s;
-}
-
-.new-post-back-button:hover {
-  background-color: #A1F7DC;
-
-  transform: translateY(-3px);
-
-  box-shadow: 3px 3px 0 #111;
-}
-
-
-/*スマホ版*/
-
-@media screen and (max-width: 600px) {
-
-  .all-posts-page {
-    padding: 40px 15px 70px;
-  }
-
-  .all-posts-heading h1 {
-    font-size: 34px;
-  }
-
-  .all-posts-mini-title {
-    font-size: 20px;
-  }
-
-  .all-posts-grid {
-    width: 96%;
-
-    grid-template-columns: 1fr;
-
-    gap: 30px;
-  }
-
-  .all-posts-page .post-image {
-    height: 220px;
-  }
-
+  color: var(--ink-soft);
 }

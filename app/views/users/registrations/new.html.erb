@@ -1,109 +1,50 @@
-<div class="signup-page">
-
-  <div class="signup-heading">
-    <p class="signup-mini-title">Join tabi✈︎palette</p>
-    <h1>新規登録</h1>
-    <p class="signup-subtitle">
-      あなたらしい旅を見つける準備をはじめよう ❤︎
-    </p>
-  </div>
-
-
-  <div class="signup-card">
-
-    <%= form_for(resource,
-      as: resource_name,
-      url: registration_path(resource_name)) do |f| %>
-
-      <%= render "users/shared/error_messages", resource: resource %>
-
-
-      <!-- 名前 -->
-      <div class="signup-field">
-
-        <%= f.label :name, "👤 名前" %>
-
-        <%= f.text_field :name,
-          autofocus: true,
-          class: "signup-input",
-          placeholder: "名前を入力"
-        %>
-
+<% content_for :title, "新規登録" %>
+<div class="auth-page page">
+  <div class="container">
+    <div class="auth-shell">
+      <div class="auth-visual auth-visual-signup" aria-hidden="true">
+        <p class="auth-visual-logo">tabi✈︎palette</p>
+        <p class="auth-visual-copy">旅のワクワクを、<br>自分らしい色で見つけよう。</p>
       </div>
 
+      <div class="auth-card">
+        <p class="eyebrow">Join tabi✈︎palette</p>
+        <h1 class="auth-title">新規登録</h1>
+        <p class="auth-lead">登録すると、旅の思い出を投稿できるようになります。</p>
 
-      <!-- メールアドレス -->
-      <div class="signup-field">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form-stack" }) do |f| %>
+          <%= render "users/shared/error_messages", resource: resource %>
 
-        <%= f.label :email, "✉️ メールアドレス" %>
+          <div class="field">
+            <%= f.label :name, "名前" %>
+            <%= f.text_field :name, autofocus: true, autocomplete: "nickname", class: "input", placeholder: "ニックネームでもOK" %>
+          </div>
 
-        <%= f.email_field :email,
-          autocomplete: "email",
-          class: "signup-input",
-          placeholder: "example@email.com"
-        %>
+          <div class="field">
+            <%= f.label :email, "メールアドレス" %>
+            <%= f.email_field :email, autocomplete: "email", class: "input", placeholder: "example@email.com" %>
+          </div>
 
-      </div>
+          <div class="field">
+            <%= f.label :password, "パスワード" %>
+            <% if @minimum_password_length %>
+              <p class="field-hint"><%= @minimum_password_length %>文字以上で入力してください</p>
+            <% end %>
+            <%= f.password_field :password, autocomplete: "new-password", class: "input", placeholder: "パスワードを入力" %>
+          </div>
 
+          <div class="field">
+            <%= f.label :password_confirmation, "パスワード（確認）" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input", placeholder: "もう一度入力してください" %>
+          </div>
 
-      <!-- パスワード -->
-      <div class="signup-field">
-
-        <%= f.label :password, "🔑 パスワード" %>
-
-        <% if @minimum_password_length %>
-          <p class="signup-password-note">
-            <%= @minimum_password_length %>文字以上で入力してください
-          </p>
+          <%= f.submit "新規登録 ✈︎", class: "btn btn-accent btn-lg btn-block" %>
         <% end %>
 
-        <%= f.password_field :password,
-          autocomplete: "new-password",
-          class: "signup-input",
-          placeholder: "パスワードを入力"
-        %>
-
+        <div class="auth-links">
+          <p>すでにアカウントをお持ちの方は <%= link_to "ログインはこちら", new_session_path(resource_name), class: "text-link" %></p>
+        </div>
       </div>
-
-
-      <!-- パスワード確認 -->
-      <div class="signup-field">
-
-        <%= f.label :password_confirmation, "🔐 パスワード確認" %>
-
-        <%= f.password_field :password_confirmation,
-          autocomplete: "new-password",
-          class: "signup-input",
-          placeholder: "もう一度入力してください"
-        %>
-
-      </div>
-
-
-      <!-- 新規登録ボタン -->
-      <div class="signup-actions">
-
-        <%= f.submit "新規登録 ✈︎",
-          class: "signup-submit-button"
-        %>
-
-      </div>
-
-    <% end %>
-
-
-    <!-- ログインページ -->
-    <div class="signup-links">
-
-      <p>すでにアカウントを持っていますか？</p>
-
-      <%= link_to "ログインはこちら",
-        new_session_path(resource_name),
-        class: "signup-login-link"
-      %>
-
     </div>
-
   </div>
-
 </div>

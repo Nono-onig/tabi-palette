@@ -1,249 +1,104 @@
-<div class="tweet-show-page">
-
-  <!-- =========================
-       タイトル
-  ========================== -->
-
-  <div class="tweet-show-heading">
-
-    <p class="tweet-show-mini-title">
-      Travel Memory ✈︎
-    </p>
-
-    <h1>
-      <%= @tweet.place %>
-    </h1>
-
-    <% if @tweet.location.present? %>
-      <p class="tweet-show-location">
-        📍 <%= @tweet.location %>
-      </p>
-    <% end %>
-
-  </div>
-
-
-  <!-- =========================
-       投稿カード
-  ========================== -->
-
-  <div class="tweet-show-card">
-
-
-    <!-- 写真 -->
-
-    <% if @tweet.image.attached? %>
-
-      <div class="tweet-show-image-area">
-
-        <%= image_tag @tweet.image,
-          class: "tweet-show-image"
-        %>
-
-      </div>
-
-    <% end %>
-
-
-    <!-- 写真の説明 -->
-
-    <% if @tweet.picture.present? %>
-
-      <p class="tweet-picture-caption">
-        📷 <%= @tweet.picture %>
-      </p>
-
-    <% end %>
-
-
-    <!-- =========================
-         基本情報
-    ========================== -->
-
-    <div class="tweet-show-info">
-
-
-      <% if @tweet.region.present? %>
-
-        <div class="tweet-show-item">
-
-          <p class="tweet-show-label">
-            🗺️ 地域
-          </p>
-
-          <p class="tweet-show-value">
-            <%= @tweet.region %>
-          </p>
-
-        </div>
-
-      <% end %>
-
-
-      <% if @tweet.place.present? %>
-
-        <div class="tweet-show-item">
-
-          <p class="tweet-show-label">
-            ⛰️ 国名
-          </p>
-
-          <p class="tweet-show-value">
-            <%= @tweet.place %>
-          </p>
-
-        </div>
-
-      <% end %>
-
-
-      <% if @tweet.location.present? %>
-
-        <div class="tweet-show-item">
-
-          <p class="tweet-show-label">
-            🚃 場所
-          </p>
-
-          <p class="tweet-show-value">
-            <%= @tweet.location %>
-          </p>
-
-        </div>
-
-      <% end %>
-
-
-      <% if @tweet.cost.present? %>
-
-        <div class="tweet-show-item">
-
-          <p class="tweet-show-label">
-            💰 コスト
-          </p>
-
-          <p class="tweet-show-value">
-            <%= @tweet.cost %>
-          </p>
-
-        </div>
-
-      <% end %>
-
-    </div>
-
-
-    <!-- =========================
-         コメント
-    ========================== -->
-
-    <% if @tweet.comment.present? %>
-
-      <div class="tweet-show-text-card">
-
-        <p class="tweet-show-text-title">
-          💬 旅の思い出
-        </p>
-
-        <p class="tweet-show-text">
-          <%= simple_format(@tweet.comment) %>
-        </p>
-
-      </div>
-
-    <% end %>
-
-
-    <!-- =========================
-         おすすめ
-    ========================== -->
-
-    <% if @tweet.recommendation.present? %>
-
-      <div class="tweet-show-text-card recommendation-card">
-
-        <p class="tweet-show-text-title">
-          💡 こんな人におすすめ
-        </p>
-
-        <p class="tweet-show-text">
-          <%= simple_format(@tweet.recommendation) %>
-        </p>
-
-      </div>
-
-    <% end %>
-
-
-    <!-- =========================
-         タグ
-    ========================== -->
-
-    <% if @tweet.tags.present? %>
-
-      <div class="tweet-show-tags">
-
-        <p class="tweet-show-text-title">
-          🏷️ Tags
-        </p>
-
-        <div class="tweet-show-tag-list">
-
-          <% @tweet.tags.each do |tag| %>
-
-            <span class="tweet-show-tag">
-              <%= tag.name %>
-            </span>
-
+<% content_for :title, @tweet.place.presence || "旅の思い出" %>
+<div class="tweet-show-page page">
+  <div class="container tweet-show-container">
+
+    <nav class="breadcrumb" aria-label="パンくずリスト">
+      <%= link_to "トップ", root_path %>
+      <span aria-hidden="true">/</span>
+      <%= link_to "みんなの投稿", all_posts_tweets_path %>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page"><%= @tweet.place %></span>
+    </nav>
+
+    <article class="tweet-show">
+      <!-- 写真 -->
+      <figure class="tweet-show-media">
+        <% if @tweet.image.attached? %>
+          <%= image_tag @tweet.image, alt: @tweet.picture.presence || "#{@tweet.place}の写真" %>
+        <% else %>
+          <div class="tweet-show-noimage" aria-hidden="true">✈︎</div>
+        <% end %>
+        <% if @tweet.picture.present? %>
+          <figcaption>📷 <%= @tweet.picture %></figcaption>
+        <% end %>
+      </figure>
+
+      <!-- 本文 -->
+      <div class="tweet-show-body">
+        <header class="tweet-show-head">
+          <p class="eyebrow">Travel Memory</p>
+          <h1 class="tweet-show-title"><%= @tweet.place %></h1>
+          <% if @tweet.location.present? %>
+            <p class="tweet-show-location">📍 <%= @tweet.location %></p>
           <% end %>
 
-        </div>
+          <p class="tweet-show-meta">
+            <% if @tweet.user %>
+              <% if user_signed_in? %>
+                <%= link_to "#{@tweet.user.name} さん", user_path(@tweet.user), class: "text-link" %>
+              <% else %>
+                <%= @tweet.user.name %> さん
+              <% end %>
+              ・
+            <% end %>
+            <time datetime="<%= @tweet.created_at.iso8601 %>"><%= @tweet.created_at.strftime("%Y年%-m月%-d日") %></time>
+          </p>
+        </header>
 
+        <dl class="tweet-show-facts">
+          <% if @tweet.region.present? %>
+            <div><dt>🗺️ 地域</dt><dd><%= @tweet.region %></dd></div>
+          <% end %>
+          <% if @tweet.place.present? %>
+            <div><dt>⛰️ 国名</dt><dd><%= @tweet.place %></dd></div>
+          <% end %>
+          <% if @tweet.location.present? %>
+            <div><dt>🚃 場所</dt><dd><%= @tweet.location %></dd></div>
+          <% end %>
+          <% if @tweet.cost.present? %>
+            <div><dt>💰 コスト</dt><dd><%= @tweet.cost %></dd></div>
+          <% end %>
+        </dl>
+
+        <% if @tweet.tags.any? %>
+          <div class="tag-list tweet-show-tags">
+            <% @tweet.tags.each do |tag| %>
+              <span class="tag"><%= tag.name %></span>
+            <% end %>
+          </div>
+        <% end %>
+
+        <% if user_signed_in? && @tweet.user == current_user %>
+          <div class="btn-row tweet-owner-actions">
+            <%= link_to "編集する ✎", edit_tweet_path(@tweet), class: "btn btn-outline btn-sm" %>
+            <%= button_to "削除する",
+              tweet_path(@tweet),
+              method: :delete,
+              form: { data: { turbo_confirm: "この投稿を削除しますか？" } },
+              class: "btn btn-danger btn-sm" %>
+          </div>
+        <% end %>
       </div>
+    </article>
 
-    <% end %>
+    <div class="tweet-show-texts">
+      <% if @tweet.comment.present? %>
+        <section class="tweet-show-text card card-pad">
+          <h2>💬 旅の思い出</h2>
+          <%= simple_format(@tweet.comment) %>
+        </section>
+      <% end %>
 
+      <% if @tweet.recommendation.present? %>
+        <section class="tweet-show-text tweet-show-reco card card-pad">
+          <h2>💡 こんな人におすすめ</h2>
+          <%= simple_format(@tweet.recommendation) %>
+        </section>
+      <% end %>
+    </div>
 
-    <!-- =========================
-         編集・削除
-    ========================== -->
-
-    <% if user_signed_in? && @tweet.user == current_user %>
-
-      <div class="tweet-owner-actions">
-
-        <%= link_to "編集する ✎",
-          edit_tweet_path(@tweet),
-          class: "tweet-edit-button"
-        %>
-
-        <%= button_to "削除する",
-          tweet_path(@tweet),
-          method: :delete,
-          data: {
-            turbo_confirm: "この投稿を削除しますか？"
-          },
-          class: "tweet-delete-button"
-        %>
-
-      </div>
-
-    <% end %>
-
+    <div class="back-area">
+      <%= link_to "← 投稿一覧に戻る", all_posts_tweets_path, class: "btn btn-outline" %>
+    </div>
   </div>
-
-
-  <!-- =========================
-       戻る
-  ========================== -->
-
-  <div class="tweet-show-back">
-
-    <%= link_to "← 投稿一覧に戻る",
-      all_posts_tweets_path,
-      class: "tweet-show-back-button"
-    %>
-
-  </div>
-
 </div>

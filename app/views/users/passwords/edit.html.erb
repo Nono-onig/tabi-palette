@@ -1,95 +1,34 @@
-<div class="password-change-page">
+<% content_for :title, "新しいパスワード" %>
+<div class="auth-page page">
+  <div class="container">
+    <div class="auth-card auth-card-solo">
+      <p class="eyebrow">New password</p>
+      <h1 class="auth-title">新しいパスワードを設定</h1>
+      <p class="auth-lead">新しいパスワードを入力してください。</p>
 
-  <div class="password-change-heading">
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "form-stack" }) do |f| %>
+        <%= render "users/shared/error_messages", resource: resource %>
+        <%= f.hidden_field :reset_password_token %>
 
-    <p class="password-change-mini-title">
-      New Password 🔑
-    </p>
+        <div class="field">
+          <%= f.label :password, "新しいパスワード" %>
+          <% if @minimum_password_length %>
+            <p class="field-hint"><%= @minimum_password_length %>文字以上で入力してください</p>
+          <% end %>
+          <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "input", placeholder: "新しいパスワード" %>
+        </div>
 
-    <h1>
-      新しいパスワードを設定
-    </h1>
+        <div class="field">
+          <%= f.label :password_confirmation, "新しいパスワード（確認）" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input", placeholder: "もう一度入力してください" %>
+        </div>
 
-    <p class="password-change-subtitle">
-      新しいパスワードを入力してください
-    </p>
+        <%= f.submit "パスワードを変更する ✈︎", class: "btn btn-primary btn-lg btn-block" %>
+      <% end %>
 
-  </div>
-
-
-  <div class="password-change-card">
-
-    <%= form_for(
-      resource,
-      as: resource_name,
-      url: password_path(resource_name),
-      html: { method: :put }
-    ) do |f| %>
-
-      <%= render "users/shared/error_messages", resource: resource %>
-
-      <%= f.hidden_field :reset_password_token %>
-
-
-      <!-- 新しいパスワード -->
-      <div class="password-change-field">
-
-        <%= f.label :password, "🔑 新しいパスワード" %>
-
-        <% if @minimum_password_length %>
-
-          <p class="password-change-note">
-            <%= @minimum_password_length %>文字以上で入力してください
-          </p>
-
-        <% end %>
-
-        <%= f.password_field :password,
-          autofocus: true,
-          autocomplete: "new-password",
-          class: "password-change-input",
-          placeholder: "新しいパスワード"
-        %>
-
+      <div class="auth-links">
+        <p><%= link_to "← ログインに戻る", new_session_path(resource_name), class: "text-link" %></p>
       </div>
-
-
-      <!-- パスワード確認 -->
-      <div class="password-change-field">
-
-        <%= f.label :password_confirmation, "🔐 新しいパスワード確認" %>
-
-        <%= f.password_field :password_confirmation,
-          autocomplete: "new-password",
-          class: "password-change-input",
-          placeholder: "もう一度入力してください"
-        %>
-
-      </div>
-
-
-      <!-- 更新ボタン -->
-      <div class="password-change-actions">
-
-        <%= f.submit "パスワードを変更する ✈︎",
-          class: "password-change-submit"
-        %>
-
-      </div>
-
-    <% end %>
-
-
-    <!-- ログインに戻る -->
-    <div class="password-change-back">
-
-      <%= link_to "← ログインに戻る",
-        new_session_path(resource_name),
-        class: "password-change-back-button"
-      %>
-
     </div>
-
   </div>
-
 </div>

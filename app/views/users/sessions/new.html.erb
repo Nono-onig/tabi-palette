@@ -1,95 +1,43 @@
-<div class="login-page">
-
-  <div class="login-heading">
-    <p class="login-mini-title">Welcome Back ✈︎</p>
-    <h1>ログイン</h1>
-    <p class="login-subtitle">
-      tabi✈︎palette で、次の旅を見つけよう ❤︎
-    </p>
-  </div>
-
-
-  <div class="login-card">
-
-    <%= form_for(resource,
-      as: resource_name,
-      url: session_path(resource_name)) do |f| %>
-
-
-      <!-- メールアドレス -->
-      <div class="login-field">
-
-        <%= f.label :email, "✉️ メールアドレス" %>
-
-        <%= f.email_field :email,
-          autofocus: true,
-          autocomplete: "email",
-          class: "login-input",
-          placeholder: "example@email.com"
-        %>
-
+<% content_for :title, "ログイン" %>
+<div class="auth-page page">
+  <div class="container">
+    <div class="auth-shell">
+      <div class="auth-visual" aria-hidden="true">
+        <p class="auth-visual-logo">tabi✈︎palette</p>
+        <p class="auth-visual-copy">おかえりなさい。<br>次の旅を、一緒に見つけよう。</p>
       </div>
 
+      <div class="auth-card">
+        <p class="eyebrow">Welcome back</p>
+        <h1 class="auth-title">ログイン</h1>
+        <p class="auth-lead">tabi✈︎palette で、次の旅を見つけよう。</p>
 
-      <!-- パスワード -->
-      <div class="login-field">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-stack" }) do |f| %>
+          <div class="field">
+            <%= f.label :email, "メールアドレス" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input", placeholder: "example@email.com" %>
+          </div>
 
-        <%= f.label :password, "🔑 パスワード" %>
+          <div class="field">
+            <%= f.label :password, "パスワード" %>
+            <%= f.password_field :password, autocomplete: "current-password", class: "input", placeholder: "パスワードを入力" %>
+          </div>
 
-        <%= f.password_field :password,
-          autocomplete: "current-password",
-          class: "login-input",
-          placeholder: "パスワードを入力"
-        %>
+          <% if devise_mapping.rememberable? %>
+            <label class="checkbox-row">
+              <%= f.check_box :remember_me %>
+              ログイン状態を保持する
+            </label>
+          <% end %>
 
-      </div>
+          <%= f.submit "ログイン ✈︎", class: "btn btn-primary btn-lg btn-block" %>
+        <% end %>
 
-
-      <!-- ログイン状態保持 -->
-      <% if devise_mapping.rememberable? %>
-
-        <div class="login-remember">
-
-          <%= f.check_box :remember_me,
-            class: "login-checkbox"
-          %>
-
-          <%= f.label :remember_me,
-            "ログイン状態を保持する"
-          %>
-
+        <div class="auth-links">
+          <p>はじめての方は <%= link_to "新規登録はこちら", new_registration_path(resource_name), class: "text-link" %></p>
+          <p><%= link_to "パスワードを忘れた方はこちら", new_password_path(resource_name), class: "text-link" %></p>
         </div>
-
-      <% end %>
-
-
-      <!-- ログインボタン -->
-      <div class="login-submit-area">
-
-        <%= f.submit "ログイン ✈︎",
-          class: "login-submit-button"
-        %>
-
       </div>
-
-    <% end %>
-
-
-    <!-- 下のリンク -->
-    <div class="login-links">
-
-      <%= link_to "新規登録はこちら",
-        new_registration_path(resource_name),
-        class: "login-link"
-      %>
-
-      <%= link_to "パスワードを忘れた方はこちら",
-        new_password_path(resource_name),
-        class: "login-link"
-      %>
-
     </div>
-
   </div>
-
 </div>

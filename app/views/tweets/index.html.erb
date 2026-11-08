@@ -1,240 +1,234 @@
+<% filtering = params[:search].present? || params[:tag_ids].present? %>
+<% selected_tag_ids = Array(params[:tag_ids]).map(&:to_s) %>
+
 <div class="top-page">
 
-  <!-- About -->
-  <div
-  class="about"
-  style="background-image: url('<%= asset_path("about-sky.jpg") %>');"
->
+  <!-- =========================
+       ヒーロー
+  ========================== -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">Find your travel palette</p>
+        <h1 class="hero-title">
+          <span class="nowrap">旅のワクワクを、</span><br>
+          <span class="nowrap"><span class="hero-title-accent">自分らしい色</span>で</span><span class="nowrap">見つける。</span>
+        </h1>
+        <p class="hero-lead">
+          好きなこと、心が動く瞬間はひとりひとり違うもの。<br class="pc-only">
+          7つの質問から、あなたにぴったりの旅先と旅のスタイルを診断します。
+        </p>
 
-  <div class="about-inner">
-
-    <h2 class="about-title">About</h2>
-
-    <p class="about-text">
-      ひとりひとりの好みや個性が違うように、ぴったりな旅も人それぞれ<br>
-      さまざまな旅の選択肢から、自分に合った「旅」を見つけよう　❤︎<br>
-      あなたにぴったりな旅先を診断し、旅の実現をサポートします
-    </p>
-
-  </div>
-
-
-  <!-- カメラを持った女の子 -->
-  <%= image_tag "camera-girl.png", class: "about-girl" %>
-
-
-  <!-- 下の文字 -->
-  <div class="about-logo-flow">
-  <div class="about-logo-track">
-
-    <div class="about-logo-group">
-      <span>tabi✈︎palette</span>
-      <span>tabi✈︎palette</span>
-      <span>tabi✈︎palette</span>
-      <span>tabi✈︎palette</span>　
-      
-    </div>
-
-    <div class="about-logo-group">
-      <span>tabi✈︎palette</span>
-      <span>tabi✈︎palette</span>
-      <span>tabi✈︎palette</span>
-      <span>tabi✈︎palette</span>　
-    
-    
-    </div>
-
-  </div>
-</div>
-</div>
-
-
-<!-- 旅行先診断 -->
-<div class="diagnosis-section">
-
-  <div class="diagnosis-background">
-
-    <%= image_tag "test-sky.jpg", class: "diagnosis-photo" %>
-    
-  </div>
-
-  <%= link_to new_test_path, class: "diagnosis-button" do %>
-    <span>旅先を診断する✈️</span>
-    <span class="test-plane-mark"></span>
-  <% end %>
-  
-  <p class="diagnosis-text">
-      質問に答えて、<br>
-      あなたにぴったりの旅を<br>
-      見つけよう
-    </p>
-
-<!-- 新規投稿する -->
-  <%= link_to new_tweet_path, class: "new-post-circle" do %>
-    <span>投稿する✈️</span>
-  <% end %>
-
-  <p class="post-text">
-      旅の思い出や、<br>
-      おすすめの場所を<br>
-      みんなにシェアしよう
-    </p>
-
-  <!-- 飛行機のイラスト -->  
-  <%= image_tag "test-plane.png", class: "test-plane" %>
-
-</div>
-
-<!-- =========================
-     投稿検索 ＋ タグ検索
-========================= -->
-
-<section
-  class="search-tag-section"
-  style="background-image: url('<%= asset_path("search-sky.jpg") %>');"
->
-
-  <!-- 投稿検索 -->
-  <div class="search-section">
-
-    <%= form_tag({controller: "tweets", action: "index"},
-                 method: :get,
-                 class: "search-form") do %>
-
-      <%= text_field_tag :search, params[:search],
-        class: "search-input",
-        placeholder: "国名や場所をけんさく..." %>
-
-      <%= submit_tag "みんなの\n投稿をけんさく🔎",
-        class: "post-search-button" %>
-
-    <% end %>
-
-  </div>
-
-
-  <!-- タグ検索 -->
-  <div class="tag-section">
-
-    <%= form_tag({controller: "tweets", action: "index"},
-                 method: :get,
-                 class: "tag-form") do %>
-
-      <%= submit_tag "気になる\nタグから\nさがす🔎",
-        class: "tag-title-circle" %>
-
-      <div class="tag-area">
-
-        <div class="tags">
-
-          <% Tag.all.each do |t| %>
-
-            <label class="tag-button">
-
-              <%= check_box_tag "tag_ids[]",
-                t.id,
-                false,
-                class: "tag-checkbox" %>
-
-              <span class="tag-label">
-                #<%= t.name %>
-              </span>
-
-            </label>
-
+        <div class="btn-row">
+          <%= link_to new_test_path, class: "btn btn-accent btn-lg" do %>
+            旅先診断を始める <span aria-hidden="true">→</span>
           <% end %>
-
+          <%= link_to "みんなの旅を見る", all_posts_tweets_path, class: "btn btn-outline btn-lg" %>
         </div>
 
+        <ul class="hero-points">
+          <li><strong>7</strong>つの質問</li>
+          <li><strong>約1</strong>分で完了</li>
+          <li><strong><%= @countries.size.nonzero? || 11 %></strong>か国の旅ガイド</li>
+        </ul>
       </div>
 
-    <% end %>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-photo hero-photo-main">
+          <%= image_tag "thumbs/italy.jpg", alt: "" %>
+        </div>
+        <div class="hero-photo hero-photo-sub1">
+          <%= image_tag "thumbs/thailand.jpg", alt: "" %>
+        </div>
+        <div class="hero-photo hero-photo-sub2">
+          <%= image_tag "thumbs/norway.jpg", alt: "" %>
+        </div>
+        <div class="hero-swatch">
+          <span style="background: var(--c-culture)"></span>
+          <span style="background: var(--c-nature)"></span>
+          <span style="background: var(--c-adventure)"></span>
+          <span style="background: var(--c-relax)"></span>
+          <span style="background: var(--c-local)"></span>
+          <span style="background: var(--c-city)"></span>
+          <span style="background: var(--c-art)"></span>
+        </div>
+        <%= image_tag "camera-girl.png", class: "hero-illust", alt: "" %>
+      </div>
+    </div>
+  </section>
 
-  </div>
+
+  <!-- =========================
+       使い方
+  ========================== -->
+  <section class="section how">
+    <div class="container">
+      <div class="page-head">
+        <p class="eyebrow">How it works</p>
+        <h2 class="section-title">tabi✈︎palette でできること</h2>
+      </div>
+
+      <ol class="how-steps">
+        <li class="how-step">
+          <span class="how-num">01</span>
+          <span class="how-icon" aria-hidden="true">🎨</span>
+          <h3>旅のPaletteを診断</h3>
+          <p>7つの質問に答えると、あなたの「旅の好み」を7色のPaletteで可視化します。</p>
+        </li>
+        <li class="how-step">
+          <span class="how-num">02</span>
+          <span class="how-icon" aria-hidden="true">🧳</span>
+          <h3>旅の準備をチェック</h3>
+          <p>おすすめの国の費用・ビザ・持ち物・交通・注意点をまとめてチェックできます。</p>
+        </li>
+        <li class="how-step">
+          <span class="how-num">03</span>
+          <span class="how-icon" aria-hidden="true">📸</span>
+          <h3>旅の思い出をシェア</h3>
+          <p>旅先の写真やおすすめスポットを投稿して、次の誰かの旅のヒントに。</p>
+        </li>
+      </ol>
+    </div>
+  </section>
 
 
-  <!-- 検索する女の子 -->
-  <%= image_tag "test-girl.png", class: "test-girl" %>
+  <!-- =========================
+       行き先
+  ========================== -->
+  <% if @countries.any? %>
+    <section class="section destinations">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Destinations</p>
+            <h2 class="section-title">旅の準備ガイドがある国</h2>
+            <p class="section-lead">気になる国をタップして、旅に出る前に知っておきたいことをチェック。</p>
+          </div>
+        </div>
 
-</section>
-<!-- ★ 検索＋タグの背景はここで終了 -->
+        <div class="destination-scroller">
+          <% @countries.each do |country| %>
+            <%= link_to country_path(country), class: "destination-card" do %>
+              <% if (img = country_image_path(country.country, size: :thumb)) %>
+                <img src="<%= img %>" alt="" loading="lazy">
+              <% end %>
+              <span class="destination-name"><%= country.country %></span>
+              <% if country.country_en.present? %>
+                <span class="destination-en"><%= country.country_en %></span>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  <% end %>
 
 
-<!-- =========================
-     みんなの投稿
-========================= -->
+  <!-- =========================
+       投稿検索 ＋ タグ検索
+  ========================== -->
+  <section class="section search-block" id="search">
+    <div class="container">
+      <div class="search-panel">
+        <div class="search-panel-head">
+          <div>
+            <p class="eyebrow">Search</p>
+            <h2 class="section-title">みんなの旅をさがす</h2>
+            <p class="section-lead">国名・場所・キーワードや、気になるタグから旅の投稿を検索できます。</p>
+          </div>
+          <%= image_tag "test-girl.png", class: "search-illust", alt: "" %>
+        </div>
 
-<section
-  class="posts-section"
-  style="background-image: url('<%= asset_path("test-sky.jpg") %>');"
->
+        <%= form_tag(url_for(controller: "tweets", action: "index", anchor: "posts"),
+                     method: :get,
+                     class: "search-form") do %>
 
-  <div class="post-cards">
+          <div class="search-bar">
+            <label for="search" class="visually-hidden">キーワード</label>
+            <span class="search-icon" aria-hidden="true">🔎</span>
+            <%= text_field_tag :search, params[:search],
+              class: "search-input",
+              placeholder: "国名や場所でけんさく（例：タイ、カフェ）" %>
+            <%= submit_tag "検索", name: nil, class: "btn btn-primary search-submit" %>
+          </div>
 
-    <% @tweets.first(4).each do |t| %>
-
-      <div class="post-card">
-
-        <% if t.image.attached? %>
-          <%= image_tag t.image,
-            class: "post-image",
-            loading: "lazy" %>
-        <% end %>
-
-        <div class="post-info">
-
-          <h3><%= t.place %></h3>
-
-          <% if t.location.present? %>
-            <p>📍 <%= t.location %></p>
+          <% tags = Tag.all %>
+          <% if tags.any? %>
+            <fieldset class="search-tags">
+              <legend class="field-label">タグでしぼりこむ</legend>
+              <div class="chip-group">
+                <% tags.each do |t| %>
+                  <label class="chip">
+                    <%= check_box_tag "tag_ids[]", t.id, selected_tag_ids.include?(t.id.to_s), id: "tag_#{t.id}" %>
+                    <%= t.name %>
+                  </label>
+                <% end %>
+              </div>
+            </fieldset>
           <% end %>
 
-          <% if t.comment.present? %>
-            <p class="post-comment">
-              <%= truncate(t.comment, length: 45) %>
+          <% if filtering %>
+            <p class="search-reset">
+              <%= link_to "条件をクリア", root_path(anchor: "search"), class: "text-link" %>
             </p>
           <% end %>
+        <% end %>
+      </div>
+    </div>
+  </section>
 
-          <%= link_to "くわしく見る",
-            tweet_path(t),
-            class: "post-detail-link" %>
 
+  <!-- =========================
+       みんなの投稿
+  ========================== -->
+  <section class="section posts-block" id="posts">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow"><%= filtering ? "Search results" : "Latest posts" %></p>
+          <h2 class="section-title">
+            <% if filtering %>
+              検索結果 <span class="result-count"><%= @tweets.size %>件</span>
+            <% else %>
+              みんなの旅の思い出
+            <% end %>
+          </h2>
         </div>
-
+        <div class="btn-row">
+          <%= link_to "投稿する ✈︎", new_tweet_path, class: "btn btn-accent btn-sm" %>
+          <%= link_to "すべての投稿を見る →", all_posts_tweets_path, class: "btn btn-outline btn-sm" %>
+        </div>
       </div>
 
-    <% end %>
+      <% shown = filtering ? @tweets : @tweets.first(4) %>
+      <% if shown.any? %>
+        <div class="post-grid">
+          <%= render partial: "tweets/post_card", collection: shown, as: :tweet %>
+        </div>
+      <% else %>
+        <div class="empty-state">
+          <p class="empty-state-icon">✈︎</p>
+          <p><%= filtering ? "条件に合う投稿が見つかりませんでした。キーワードやタグを変えてみてください。" : "まだ投稿がありません。最初の旅の思い出をシェアしてみませんか？" %></p>
+          <%= link_to "旅の思い出を投稿する", new_tweet_path, class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </section>
 
-  </div>
 
-  <%= link_to "みんなの投稿を見る",
-  all_posts_tweets_path,
-  class: "round-button all-posts-button" %>
-</section>
-
+  <!-- =========================
+       CTA
+  ========================== -->
+  <section class="cta-band">
+    <div class="container cta-band-inner">
+      <div>
+        <h2>次の旅は、どんな色にする？</h2>
+        <p>1分でわかる、あなただけの旅のPalette。</p>
+      </div>
+      <%= link_to new_test_path, class: "btn btn-accent btn-lg" do %>
+        旅先診断を始める <span aria-hidden="true">→</span>
+      <% end %>
+    </div>
+  </section>
 
 </div>
-<!-- ↑ top-page を閉じる -->
-
-
-<footer>
-
-  <div class="footer-marquee">
-
-    <div class="footer-track">
-
-      <span>
-        tabi✈︎palette　tabi✈︎palette　tabi✈︎palette　
-        tabi✈︎palette　tabi✈︎palette　tabi✈︎palette　
-      </span>
-
-      <span>
-        tabi✈︎palette　tabi✈︎palette　tabi✈︎palette　
-        tabi✈︎palette　tabi✈︎palette　tabi✈︎palette　
-      </span>
-
-    </div>
-
-  </div>
-
-</footer>
