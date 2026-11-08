@@ -78,7 +78,7 @@
     </div>
 
     <%# 参考リンク %>
-    <% if @country.link.present? %>
+    <% if @country.official_url %>
       <section class="country-link card card-pad">
         <div>
           <p class="eyebrow">Official information</p>
@@ -87,7 +87,7 @@
             <%= @english ? "For official information about visas and entry requirements, please visit the website." : "ビザ・入国の最新情報は、各国の公式サイトで必ず確認してください。" %>
           </p>
         </div>
-        <%= link_to(@country.link, target: "_blank", rel: "noopener", class: "btn btn-primary") do %>
+        <%= link_to(@country.official_url, target: "_blank", rel: "noopener", class: "btn btn-primary") do %>
           <%= @english ? "Official website" : "公式サイトを見る" %> <span aria-hidden="true">↗</span>
         <% end %>
       </section>

@@ -17,7 +17,7 @@ class TweetsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "タグ検索ができる" do
-    get root_path, params: { tag_ids: [tags(:one).id] }
+    get root_path, params: { tag_ids: [ tags(:one).id ] }
     assert_response :success
     assert_select ".post-card", 1
   end
@@ -45,7 +45,7 @@ class TweetsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_difference("Tweet.count", 1) do
-      post tweets_path, params: { tweet: { place: "韓国", region: "アジア", tag_ids: [tags(:one).id] } }
+      post tweets_path, params: { tweet: { place: "韓国", region: "アジア", tag_ids: [ tags(:one).id ] } }
     end
   end
 
